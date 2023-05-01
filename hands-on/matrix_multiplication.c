@@ -27,12 +27,14 @@ int main( int argc, char *argv[] )  {
     int x_size = (int)x_tmp;
     int y_size = (int)y_tmp;
 
+    printf("Initialized x_size,y_size\n");
 
     int a[x_size][y_size];
     int b[x_size][y_size];
     int c[x_size][y_size];
 
-    printf("I am here\n");
+    printf("Initialized a,b,c\n");
+
     // loop an init with rand vals
     for(int i=0;i<x_size;i++)
     {
