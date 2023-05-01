@@ -1,8 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<inttypes.h>
 #include<time.h>
 
 int main( int argc, char *argv[] )  {
+
     if( argc == 3 ) {
         printf("Will multiply two 2D matricies of size (%s,%s) \n", argv[1],argv[2]);
     }
@@ -14,15 +16,23 @@ int main( int argc, char *argv[] )  {
         printf("I need 2 arguments (Xdim, Ydim)..... Too few arguments supplied.\n");
         exit(1);
     }
-
     srand(time(NULL)); // Initialization or RANDOM NUMBER
-    int x_size = atoi(argv[1]);
-    int y_size = atoi(argv[2]);
+    long int x_tmp;
+    long int y_tmp;
+    char *eptr;
+
+    x_tmp = strtol(argv[1],&eptr,10);
+    y_tmp = strtol(argv[2],&eptr,10);
+
+    int x_size = (int)x_tmp;
+    int y_size = (int)y_tmp;
+
 
     int a[x_size][y_size];
     int b[x_size][y_size];
     int c[x_size][y_size];
 
+    printf("I am here\n");
     // loop an init with rand vals
     for(int i=0;i<x_size;i++)
     {
