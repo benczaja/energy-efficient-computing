@@ -2,10 +2,22 @@
 #include<stdlib.h>
 #include<time.h>
 
-int main(){
+int main( int argc, char *argv[] )  {
+    if( argc == 3 ) {
+        printf("Will multiply two 2D matricies of size (%s,%s) \n", argv[1],argv[2]);
+    }
+    else if( argc > 3 ) {
+        printf("I need 2 arguments (Xdim, Ydim)..... Too many arguments supplied.\n");
+        exit(1);
+    }
+    else {
+        printf("I need 2 arguments (Xdim, Ydim)..... Too few arguments supplied.\n");
+        exit(1);
+    }
+
     srand(time(NULL)); // Initialization or RANDOM NUMBER
-    int x_size = 10;
-    int y_size = 10;
+    int x_size = atoi(argv[1]);
+    int y_size = atoi(argv[2]);
 
     int a[x_size][y_size];
     int b[x_size][y_size];
@@ -16,15 +28,11 @@ int main(){
     {
         for(int j=0;j<y_size;j++)
         {
-            a[i][j] = rand() % 10;
-            b[i][j] = rand() % 10;
-            printf("%d\t",a[i][j]);
-            printf("%d\t",b[i][j]);
+            a[i][j] = rand() % 10; // Get a number between 1 and 10
+            b[i][j] = rand() % 10; // Get a number between 1 and 10
         }
-        printf("\n");
     }
 
-    printf("multiply of the matrix=\n");
     for(int i=0;i<x_size;i++)
     {
         for(int j=0;j<y_size;j++)
@@ -42,9 +50,9 @@ int main(){
     {
         for(int j=0;j<y_size;j++)
         {
-            printf("%d\t",c[i][j]);
+            //printf("%d\t",c[i][j]);
         }
-        printf("\n");
+        //printf("\n");
     }
     return 0;
 }
