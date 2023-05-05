@@ -1,6 +1,8 @@
 # Hands on Examples
 1. Simple matrix multiplication 
 2. Simple saxpy (single precision a*x + b)
+3. **To Be Added Sparse matrix–vector multiplication (SpMV)**
+4. **Simple Python implementation as well???**
 
 ## Simple Matrix multiplication
 How to compile compile the program:
