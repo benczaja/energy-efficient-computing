@@ -12,7 +12,6 @@ float B[ROWS][COLUMNS];    // Matric B
 float C[ROWS][COLUMNS];    // result
 
 void initialize_matrices(){
-    printf("Initializing A (size %d) and B (size %d) arrays with random values between (0..1)\n",ROWS,COLUMNS);
     for (int i = 0 ; i < ROWS ; i++)
     {
         for (int j = 0 ; j < COLUMNS ; j++)
@@ -25,7 +24,7 @@ void initialize_matrices(){
 }
 
 void simple_matrix_multiply(){
-    printf("(Simple) Multiplying A*B\n");
+    printf("(Simple) Matix Multiplication\n");
     for(int i=0;i<ROWS;i++)
     {
         for(int j=0;j<COLUMNS;j++)
@@ -39,14 +38,16 @@ void simple_matrix_multiply(){
 }
 
 void openmp_matrix_multiply(){
-    printf("(OpenMP) Multiplying A*B\n");
     int num_threads = omp_get_max_threads();
-    printf("Using %d Threads\n", num_threads);
-    //#pragma omp parallel for private(i,j,k) shared(A,B,C)
+    printf("(OpenMP) Matix Multiplication Using %d Threads\n", num_threads);
+    
     #pragma omp parallel for 
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLUMNS; ++j) {
-            for (int k = 0; k < COLUMNS; ++k) {
+    for (int i = 0; i < ROWS; ++i) 
+    {
+        for (int j = 0; j < COLUMNS; ++j) 
+        {
+            for (int k = 0; k < COLUMNS; ++k) 
+            {
                 C[i][j] += A[i][k] * B[k][j];
             }
         }
@@ -55,11 +56,24 @@ void openmp_matrix_multiply(){
 
 int main()  {
 
+
+    printf("Initializing A (size %d) and B (size %d) arrays with random values between (0..1)\n",ROWS,COLUMNS);
     initialize_matrices();
+
+    clock_t t; // clock_t is of long type
+    t = clock(); // start the clock
+    simple_matrix_multiply(); // Do the matrix multiplication
+    t = clock() - t; // stop the clock
     
-    simple_matrix_multiply();
-   
-    openmp_matrix_multiply();
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // convert to seconds (and long to double)
+    printf("TIME: %f sec\n",time_taken);
+
+    initialize_matrices(); // We need to re-intiaize to make sure we get "correct answer"
+
+    double start = omp_get_wtime();  //omp needed here because clock will sum up time for all threads
+    openmp_matrix_multiply(); // Do the matrix multiplication
+    double end = omp_get_wtime(); 
+    printf("TIME: %f sec\n",(end-start));
 
     return 0;
 }
