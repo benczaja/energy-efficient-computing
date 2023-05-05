@@ -1,8 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<string.h>
-#include<omp.h>
+#include<stdio.h> // needed for ‘printf’ 
+#include<stdlib.h> // needed for ‘RAND_MAX’ 
+#include<time.h> // needed for clock() and CLOCKS_PER_SEC etc
+#include<omp.h> // needed for OpenMP 
 
 static const int ROWS = 1000;     // Number of rows in each matrix
 static const int COLUMNS = 1000;  // Number of columns in each matrix
