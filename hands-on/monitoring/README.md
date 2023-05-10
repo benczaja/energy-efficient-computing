@@ -37,4 +37,27 @@ Now run it and see what you observe.....
 ```
 ./mat_mul_pmt
 ```
+# Energy Monitoring Excersize
 
+### Run the "Energy study script"
+
+<img src="size_v_time.png" width="250" height="250" title="Time">
+<img src="size_v_joule.png"  width="250" height="250" title="Joule">
+<img src="size_v_watt.png" width="250" height="250" title="Watt">
+
+
+```
+sh energy_study.sh
+```
+This will output the results to the file `results.txt` 
+
+
+You will need python as a plotting tool, which will read in `results.txt` and plot three pngs (`size_v_joule.png`,`size_v_time.png`, `size_v_watt.png`)
+
+```
+module load 2022
+module load Python/3.10.4-GCCcore-11.3.0
+
+pip install matplotlib --user
+pip install numpy --user
+```
