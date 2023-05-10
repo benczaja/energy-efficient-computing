@@ -5,14 +5,8 @@
 #include<iostream> // needed for cout, endl etc etc
 #include<pmt.h> // needed for PMT
 
-static const int ROWS = 2000;     // Number of rows in each matrix
-static const int COLUMNS = 2000;  // Number of columns in each matrix
 
-float A[ROWS][COLUMNS];    // Matrix A
-float B[ROWS][COLUMNS];    // Matric B
-float C[ROWS][COLUMNS];    // result
-
-void initialize_matrices(){
+void initialize_matrices(int ROWS, int COLUMNS, float **A, float **B, float **C){
     for (int i = 0 ; i < ROWS ; i++)
     {
         for (int j = 0 ; j < COLUMNS ; j++)
@@ -24,7 +18,7 @@ void initialize_matrices(){
     }
 }
 
-void simple_matrix_multiply(){
+void simple_matrix_multiply(int ROWS, int COLUMNS, float **A, float **B, float **C){
     printf("(Simple) Matix Multiplication\n");
     for(int i=0;i<ROWS;i++)
     {
@@ -38,7 +32,7 @@ void simple_matrix_multiply(){
     }
 }
 
-void openmp_matrix_multiply(){
+void openmp_matrix_multipl(int ROWS, int COLUMNS, float **A, float **B, float **C){
     int num_threads = omp_get_max_threads();
     printf("(OpenMP) Matix Multiplication Using %d Threads\n", num_threads);
     
@@ -55,15 +49,60 @@ void openmp_matrix_multiply(){
     }
 }
 
-int main()  {
+int main( int argc, char *argv[] )  {
+    if( argc == 3 ) {
+        printf("Will compute");
+    }
+    else if( argc > 3 ) {
+        printf("I need 1 argument (arraysize)..... Too many arguments supplied.\n");
+        exit(1);
+    }
+    else {
+        printf("I need 1 argument (arraysize)..... Too few arguments supplied.\n");
+        exit(1);
+    }
+
+    int ROWS;
+    int COLUMNS;
+    sscanf(argv[1], "%d", &ROWS);
+    sscanf(argv[2], "%d", &COLUMNS);
+
+    float A[ROWS][COLUMNS];    // result
+    float B[ROWS][COLUMNS];    // result
+    float C[ROWS][COLUMNS];    // result
+
+
     auto sensor = pmt::rapl::Rapl::create();
     auto start = sensor->read();
 
     printf("Initializing A (size %d) and B (size %d) arrays with random values between (0..1)\n",ROWS,COLUMNS);
-    initialize_matrices();
+    
 
-    simple_matrix_multiply(); // Do the matrix multiplication
+    for (int i = 0 ; i < ROWS ; i++)
+    {
+        for (int j = 0 ; j < COLUMNS ; j++)
+        {
+            A[i][j] = (float) rand() / RAND_MAX ;
+            B[i][j] = (float) rand() / RAND_MAX ;
+            C[i][j] = 0.0 ;
+        }
+    }
+
+    printf("(Simple) Matix Multiplication\n");
+    for(int i=0;i<ROWS;i++)
+    {
+        for(int j=0;j<COLUMNS;j++)
+        {
+            for(int k=0;k<COLUMNS;k++)
+            {
+                C[i][j] += A[i][k]*B[k][j];
+            }
+        }
+    }
+
+    //simple_matrix_multiply(); // Do the matrix multiplication
     auto end = sensor->read();
+
 
     std::cout<<"RESULTS-------"<<std::endl;
     std::cout<<"Matrix Size: "<<ROWS<<std::endl;
