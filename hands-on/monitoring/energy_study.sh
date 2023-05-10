@@ -4,14 +4,15 @@
 FILE=results.txt
 if [ -f "$FILE" ]; then
     echo "$FILE exists."
+    echo "Removing $FILE"
     rm $FILE
 fi
 
 
-for i in {0..2000}
+for i in {1000..1500}
 do
     echo "Running $i $i"
-    ./test $i $i > templog.txt
+    ../test $i $i > templog.txt
 
     #just some dumb commands to "log the results"
     Size=$(sed -n '/Matrix Size:/p' templog.txt | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
