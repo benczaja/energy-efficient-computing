@@ -9,7 +9,7 @@ if [ -f "$FILE" ]; then
 fi
 
 
-for i in {1000..1500}
+for i in {0..2000..50}
 do
     echo "Running $i $i"
     ../test $i $i > templog.txt
@@ -23,4 +23,3 @@ do
     echo $Size $Time $Joule $Watt >> results.txt
 
 done
-
