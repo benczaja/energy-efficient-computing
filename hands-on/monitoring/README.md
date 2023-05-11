@@ -23,7 +23,10 @@ Suggestion: Play around with the `OMP_NUM_THREADS` for your execution
 ```
 OMP_NUM_THREADS=2 ./mat_mul
 ```
-### PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
+
+# Energy Monitoring Excersize
+
+## 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
 How to compile a c++ source code with PMT library: All you need to do is load the PMT module on Snellius and link to it ( `-lpmt`)  during compilation....
 ```
 module purge
@@ -37,8 +40,10 @@ Now run it and see what you observe.....
 ```
 ./mat_mul_pmt
 ```
-# Energy Monitoring Excersize
 
+-------
+
+## How does Performance, Power and Energy Scale?
 
 <div class="image-single-row">
           <img style="height:250px;width:30%" src="size_v_time.png"></img>
@@ -50,7 +55,7 @@ Now run it and see what you observe.....
 
 
 ```
-sh energy_study.sh
+sh energy_monitoring_study.sh
 ```
 This will output the results to the file `results.txt` 
 
