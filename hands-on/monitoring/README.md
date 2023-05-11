@@ -41,9 +41,11 @@ Now run it and see what you observe.....
 
 ### Run the "Energy study script"
 
-<img src="size_v_time.png" width="250" height="250" title="Time">
-<img src="size_v_joule.png"  width="250" height="250" title="Joule">
-<img src="size_v_watt.png" width="250" height="250" title="Watt">
+<div class="image-single-row">
+          <img style="height:250px;width:30%" src="size_v_time.png"></img>
+          <img style="height:250px;width:30%" src="size_v_joule.png"></img>
+          <img style="height:250px;width:30%" src="size_v_watt.png"></img>
+</div>
 
 
 ```
