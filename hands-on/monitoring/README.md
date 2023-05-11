@@ -39,13 +39,14 @@ Now run it and see what you observe.....
 ```
 # Energy Monitoring Excersize
 
-### Run the "Energy study script"
 
 <div class="image-single-row">
           <img style="height:250px;width:30%" src="size_v_time.png"></img>
           <img style="height:250px;width:30%" src="size_v_joule.png"></img>
           <img style="height:250px;width:30%" src="size_v_watt.png"></img>
 </div>
+
+### Run the "Energy study script"
 
 
 ```
