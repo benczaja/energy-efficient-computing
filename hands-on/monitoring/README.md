@@ -26,6 +26,27 @@ OMP_NUM_THREADS=2 ./mat_mul
 
 # Energy Monitoring Excersize
 
+## AMDuProf
+```
+module load 2022
+module load AMD-uProf/4.0.341
+
+```
+Interesting commands
+List the available "events"
+```
+AMDuProfCLI timechart --list
+```
+Profile specific core/s power and set the affinity of the program to the core
+```
+AMDuProfCLI timechart --event core=0-3,power --interval 10 --affinity 1 ./a.out
+```
+Profile temperature
+```
+ AMDuProfCLI timechart --event temperature --interval 10 --affinity 1 ./a.out
+```
+
+
 ## 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
 How to compile a c++ source code with PMT library: All you need to do is load the PMT module on Snellius and link to it ( `-lpmt`)  during compilation....
 ```
