@@ -32,11 +32,20 @@ module load 2022
 module load AMD-uProf/4.0.341
 
 ```
+Display system information
+```
+AMDuProfCLI info --system
+```
 Interesting commands
 List the available "events"
 ```
+AMDuProfCLI info --list predefined-events
+```
+List the available " system events" availble from timechart
+```
 AMDuProfCLI timechart --list
 ```
+
 Profile specific core/s power and set the affinity of the program to the core
 ```
 AMDuProfCLI timechart --event core=0-3,power --interval 10 --affinity 1 ./a.out
