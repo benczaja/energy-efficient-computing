@@ -39,7 +39,7 @@
 - (15:00-15:45) [EAR tutorial](hands-on/EAR/README.md) [Benjamin Czaja SURF]
     - Introduce Energy Aware Runtime (EAR) as a solution for improving the energy efficiency of large-scale applications
 - (15:45-16:00) Coffee Break
-- (16:00-17:00) Hands-on with KernelTuner and/or EAR [Alessio Sclocco, Benjamin Czaja
+- (16:00-17:00) Hands-on with KernelTuner and/or EAR [Alessio Sclocco, Benjamin Czaja]
     - Choice given to the participants using a couple of pre-defined applications and/or their own applications
 
 ---
