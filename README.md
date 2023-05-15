@@ -1,4 +1,4 @@
-# Energy-efficient-computing
+# Energy efficient computing
 
 ## Schedule (Draft Version 15-May-2023)
 ---
@@ -16,7 +16,7 @@
     - Saxpy
     - SGEMM
 - (14:30-15:00) Coffee Break & Tech-Setup
-- (15:00-17:00) [Monitoring tools/techniques tutorial](monitoring/README.md): Introduction to tools that can be used to monitor CPU performance and energy consumption [Benjamin Czaja SURF]
+- (15:00-17:00) [Monitoring tools/techniques tutorial](hands-on/monitoring/README.md): Introduction to tools that can be used to monitor CPU performance and energy consumption [Benjamin Czaja SURF]
     - Introduction to tools:
         - Likwid/AMD-uProf
         - PMT
@@ -31,12 +31,12 @@
     - What are P-States, C-States?
     - How can we better use resources 
 - (10:45-11:00) Coffee Break
-- (11:00-12:00) [DVFS by hand tutorial](DVFS/README.md) [Benjamin Czaja SURF]
+- (11:00-12:00) [DVFS by hand tutorial](hands-on/DVFS/README.md) [Benjamin Czaja SURF]
     - Using self-defined policies for reducing/increasing frequency
 - (13:00-14:30) [Kernel Tuner tutorial](https://github.com/KernelTuner/kernel_tuner) [Alessio Sclocco Netherlands eScience Center]
     - Kernel/node level user-intervention
 - (14:30-15:00) Coffee Break 
-- (15:00-15:45) [EAR tutorial](EAR/README.md) [Benjamin Czaja SURF]
+- (15:00-15:45) [EAR tutorial](hands-on/EAR/README.md) [Benjamin Czaja SURF]
     - Introduce Energy Aware Runtime (EAR) as a solution for improving the energy efficiency of large-scale applications
 - (15:45-16:00) Coffee Break
 - (16:00-17:00) Hands-on with KernelTuner and/or EAR [Alessio Sclocco, Benjamin Czaja
