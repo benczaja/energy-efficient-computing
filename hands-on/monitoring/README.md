@@ -1,8 +1,6 @@
 # Hands on Examples
-1. Simple matrix multiplication 
-2. Simple saxpy (single precision a*x + b)
-4. **Simple Python implementation as well???**
-5. **Simple AMDuProf polottin script?
+1. Simple saxpy (single precision a*x + b)
+2. Simple matrix multiplication 
 
 ## Simple Matrix multiplication
 How to compile compile the program:
@@ -30,7 +28,6 @@ OMP_NUM_THREADS=2 ./mat_mul
 ```
 module load 2022
 module load AMD-uProf/4.0.341
-
 ```
 Display system information
 ```
