@@ -1,8 +1,8 @@
 # Hands on Examples
 1. Simple matrix multiplication 
 2. Simple saxpy (single precision a*x + b)
-3. **To Be Added Sparse matrix–vector multiplication (SpMV)**
 4. **Simple Python implementation as well???**
+5. **Simple AMDuProf polottin script?
 
 ## Simple Matrix multiplication
 How to compile compile the program:
@@ -48,11 +48,16 @@ AMDuProfCLI timechart --list
 
 Profile specific core/s power and set the affinity of the program to the core
 ```
-AMDuProfCLI timechart --event core=0-3,power --interval 10 --affinity 1 ./a.out
+AMDuProfCLI timechart --event core=0-3,power -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 
 ```
+Profile the Frequency
+```
+AMDuProfCLI timechart --event core=0-5,frequency -o AMDuProf_output --interval 500 --affinity 1 ../bin/mat_mul 
+```
+
 Profile temperature
 ```
- AMDuProfCLI timechart --event temperature --interval 10 --affinity 1 ./a.out
+ AMDuProfCLI timechart --event temperature -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 
 ```
 
 
