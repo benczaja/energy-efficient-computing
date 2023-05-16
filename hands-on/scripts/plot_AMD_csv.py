@@ -14,7 +14,6 @@ if ".csv" not in sys.argv[1]:
 infile = sys.argv[1]
 outfile = infile.replace("timechart","timechart_clean")
 
-plot_outdir = "/home/benjamic/energy-efficient-computing/hands-on/monitoring"
 ##UGLY cleaning of the AMD csv file
 f = open(outfile, "w")
 subprocess.call(["sed", '1,/PROFILE RECORDS/d', infile], stdout=f)
