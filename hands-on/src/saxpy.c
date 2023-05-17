@@ -1,36 +1,8 @@
 #include <stdio.h> // needed for ‘printf’ 
-#include <stdlib.h> // needed for ‘RAND_MAX’ 
-#include <string.h> // needed for strcmp
-#include <stdbool.h> // needed for bool usage
-#include <ctype.h> // needed for isdigit
 #include <omp.h> // needed for OpenMP 
 #include <time.h> // needed for clock() and CLOCKS_PER_SEC etc
 
-
-void printUsage()
-{
-    fprintf(stderr, "saxpy (array size) [-s|-p|-h]\n");
-    fprintf(stderr, "\t      Invoke simple implementation of Saxpy (Single precision A X plus Y)\n");
-    fprintf(stderr, "\t-s    Invoke simple implementation of Saxpy (Single precision A X plus Y)\n");
-    fprintf(stderr, "\t-p    Invoke parallel (OpenMP) implementation of Saxpy (Single precision A X plus Y)\n");
-    fprintf(stderr, "\t-h    Display help\n");
-}
-
-bool isNumber(char number[])
-{
-    int i = 0;
-
-    //checking for negative numbers
-    if (number[0] == '-')
-        i = 1;
-    for (; number[i] != 0; i++)
-    {
-        //if (number[i] > '9' || number[i] < '0')
-        if (!isdigit(number[i]))
-            return false;
-    }
-    return true;
-}
+#include "helper.h" // local helper header to clean up code
 
 
 void simple_saxpy(int n, float a, float * x, float * y){
@@ -57,38 +29,13 @@ void openmp_saxpy(int n, float a, float * x, float * y){
 int main( int argc, char *argv[] )  {
 
     int N;
-    /* bools needed for the argument parsing logic */
+    /* DUMB bools needed for the argument parsing logic */
     bool openmp = false;
     bool simple = true;
     bool sanity_check = false;
-
-    /* Parse the arguments */
-    for(int i=0; i<argc; ++i)
-    {   
-        if (! strcmp("-s", argv[i]))
-        {
-            simple = true;
-        }
-        else if (! strcmp("-p", argv[i]))
-        {
-            openmp = true;
-            simple = false;
-        }
-        else if (!strcmp("-h", argv[i]))
-        {
-            printUsage();
-            return (EXIT_FAILURE) ;
-        }
-        else if (isNumber(argv[i])){
-          sscanf(argv[1],"%d", &N);
-          sanity_check = true;
-        }
-    }
-    /* Dumb logic to make sure an array size was passed */
-    if (! sanity_check){
-        printf("I need (arraysize) as an argument ..... Exiting.\n");
-        return (EXIT_FAILURE);
-    }
+    
+    /* VERY DUMB Argument Parsers */
+    N = parse_arguments(argc, argv, &simple, &openmp, &sanity_check);
 
     float sx[N]; /* n is an array of N integers */
     float sy[N]; /* n is an array of N integers */
