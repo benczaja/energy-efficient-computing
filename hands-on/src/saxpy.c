@@ -1,7 +1,6 @@
 #include <stdio.h> // needed for ‘printf’ 
 #include <omp.h> // needed for OpenMP 
 #include <time.h> // needed for clock() and CLOCKS_PER_SEC etc
-
 #include "helper.h" // local helper header to clean up code
 
 

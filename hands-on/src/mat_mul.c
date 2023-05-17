@@ -1,36 +1,9 @@
 #include <stdio.h> // needed for ‘printf’ 
 #include <stdlib.h> // needed for ‘RAND_MAX’ 
-#include <string.h> // needed for strcmp
-#include <stdbool.h> // needed for bool usage
-#include <ctype.h> // needed for isdigit
 #include <omp.h> // needed for OpenMP 
 #include <time.h> // needed for clock() and CLOCKS_PER_SEC etc
+#include "helper.h" // local helper header to clean up code
 
-
-void printUsage()
-{
-    fprintf(stderr, "mat_mul (matrix size) [-s|-p|-h]\n");
-    fprintf(stderr, "\t      Invoke simple implementation of matrix multiplication\n");
-    fprintf(stderr, "\t-s    Invoke simple implementation of matrix multiplication\n");
-    fprintf(stderr, "\t-p    Invoke parallel (OpenMP) implementation of matrix multiplication\n");
-    fprintf(stderr, "\t-h    Display help\n");
-}
-
-bool isNumber(char number[])
-{
-    int i = 0;
-
-    //checking for negative numbers
-    if (number[0] == '-')
-        i = 1;
-    for (; number[i] != 0; i++)
-    {
-        //if (number[i] > '9' || number[i] < '0')
-        if (!isdigit(number[i]))
-            return false;
-    }
-    return true;
-}
 
 
 void initialize_matrices(float** A, float** B, float** C, int ROWS, int COLUMNS){
@@ -86,41 +59,17 @@ int main( int argc, char *argv[] )  {
 
   int ROWS;
   int COLUMNS;
+  int N;
 
-  /* bools needed for the argument parsing logic */
+  /* DUMB bools needed for the argument parsing logic */
   bool openmp = false;
   bool simple = true;
   bool sanity_check = false;
-
-  /* Parse the arguments */
-  for(int i=0; i<argc; ++i)
-  {   
-      if (! strcmp("-s", argv[i]))
-      {
-          simple = true;
-      }
-      else if (! strcmp("-p", argv[i]))
-      {
-          openmp = true;
-          simple = false;
-      }
-      else if (!strcmp("-h", argv[i]))
-      {
-          printUsage();
-          return (EXIT_FAILURE) ;
-      }
-      else if (isNumber(argv[i])){
-        sscanf(argv[1], "%d", &ROWS);
-        sscanf(argv[1], "%d", &COLUMNS);
-        sanity_check = true;
-      }
-  }
-  /* Dumb logic to make sure an array size was passed */
-  if (! sanity_check){
-      printf("I need (arraysize) as an argument ..... Exiting.\n");
-      return (EXIT_FAILURE);
-  }
-
+  
+  /* VERY DUMB Argument Parsers */
+  N = parse_arguments(argc, argv, &simple, &openmp, &sanity_check);
+  ROWS = N;
+  COLUMNS = N;
   /* declare the arrays */
   float **A;
   float **B;
@@ -145,6 +94,7 @@ int main( int argc, char *argv[] )  {
   initialize_matrices(A, B, C, ROWS, COLUMNS);
 
   /* Simple matrix multiplication */
+  /*==============================*/
   if (true == simple)
   {
     clock_t t; // declare clock_t (long type)
@@ -157,7 +107,11 @@ int main( int argc, char *argv[] )  {
     double time_taken = ((double)t)/CLOCKS_PER_SEC; // convert to seconds (and long to double)
     printf("TIME: %f sec\n",time_taken);
   }
+
+
+
   /* OpenMP parallel matrix multiplication */
+  /*=======================================*/
   if (true == openmp)
   {
     // omp_get_wtime needed here because clock will sum up time for all threads
