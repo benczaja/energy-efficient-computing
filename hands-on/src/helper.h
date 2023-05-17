@@ -1,10 +1,8 @@
 #include <ctype.h> // needed for isdigit
 #include <stdio.h> // needed for ‘printf’ 
 #include <stdlib.h> // needed for ‘EXIT_FAILURE’ 
-
 #include <string.h> // needed for strcmp
 #include <stdbool.h> // needed for bool usage
-
 
 void print_saxpy_usage()
 {
@@ -24,8 +22,6 @@ void print_mat_mul_usage()
     fprintf(stderr, "\t-h    Display help\n");
 }
 
-
-
 bool isNumber(char number[])
 {
     int i = 0;
@@ -41,7 +37,6 @@ bool isNumber(char number[])
     }
     return true;
 }
-
 
 int parse_arguments(size_t count, char*  args[], bool *simple, bool *openmp, bool *sanity_check) {
     int N;

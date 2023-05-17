@@ -5,7 +5,6 @@
 #include "helper.h" // local helper header to clean up code
 
 
-
 void initialize_matrices(float** A, float** B, float** C, int ROWS, int COLUMNS){
     for (int i = 0 ; i < ROWS ; i++)
     {
