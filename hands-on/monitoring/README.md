@@ -221,7 +221,10 @@ This will create a .png `timechart_plot.png` in the directory where the profile 
 
 Analogus to AMDuProf.
 ```
- likwid-perfctr -g ENERGY -C 1 ../bin/mat_mul 200 200
+module load 2022
+module load likwid/5.2.2-GCC-11.3.0
+
+likwid-perfctr -g ENERGY -C 1 ../bin/mat_mul 200 200
  ```
 
 Since LIKWID is a non "native" AMD tool it requires a special daemon to access the readable and writeable MSR device files, https://github.com/RRZE-HPC/likwid/wiki/likwid-accessD . Since Snellius is a public shared (Mostly AMD machine) we will stick to the AMD tooling.
