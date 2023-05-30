@@ -37,6 +37,8 @@ The power consumption of an integrated circuit (such as a processor) is proporti
 
 **P ~ f V²**
 
+![Power Frequency Relationship](P_v_freq_example.png)
+> Image Source: "CPU Power Consumption Experiments and Results Analysis of Intel i7-4820K" Matthew Travers m.travers@newcastle.ac.uk
 
 ### What is Frequency 
 
@@ -124,7 +126,7 @@ cpupower -c 0 frequency-info
 
 <h2 id="profiler">Profilers</h2>
 
-## AMDuProf
+### AMDuProf
 ```
 module load 2022
 module load AMD-uProf/4.0.341
@@ -161,7 +163,7 @@ Profile temperature
 
 <h2 id="libraries">Libraries</h2>
 
-## 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
+### 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
 How to compile a c++ source code with PMT library: All you need to do is load the PMT module on Snellius and link to it ( `-lpmt`)  during compilation....
 ```
 module purge
