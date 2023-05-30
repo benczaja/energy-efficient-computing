@@ -42,30 +42,6 @@ The power consumption of an integrated circuit (such as a processor) is proporti
 
 The Frequency or "clock speed" of your CPU is a measure of the number of cycles a CPU executes per second. This value is measured in GHz (gigahertz). A “cycle” (also called a instruction cycle or fetch-execute cycle) is the basic unit of operation that a CPU does to "compute". During each cycle, billions of transistors within the processor open and close . This is how the CPU executes the calculations contained in the instructions it receives.
 
-In order to get an overview of the CPU arctecture of the physical (host) system use the linux tool `lscpu`. 
-```
-lscpu 
-```
-
-You can look at the files that show you the current and available rfrequencies of your CPU. Lets look at CPU #0 for example....
-
-- List the available Freqs.
-    - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies ```
-- List the maximum Freq.
-    - ```  cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq ```
-- List the minimum Freq.
-    - ```  cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq ```
-- List the current Freq.
-    - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq ```
-- Better ... watch the cpufreq it in realtime...
-    - ```  watch -n 0.1 cat /sys/devices/system/cpu/cpu0*/cpufreq/scaling_cur_freq ```
-
-This is can be accessed more easily with the linux tool `cpupower`
-```
-cpupower -c 0 frequency-info
-```
-
-
 
 ### C-States/P-States
 CPU Idle States or C-states in a x86 architecture support various states in which parts of the CPU are deactivated or run at lower performance settings. This allows systems to save power by partially deactivating CPUs that are not in use.
@@ -117,39 +93,36 @@ Nominal Perf ------>+-----------------------+                         +---------
 ```
 
 
-
 <h2 id="linux">Linux tools</h2>
 
-### Here is where we want some content
+In order to get an overview of the CPU arctecture of the physical (host) system use the linux tool `lscpu`. 
+```
+lscpu 
+```
+
+You can look at the files that show you the current and available rfrequencies of your CPU. Lets look at CPU #0 for example....
+
+- List the available Freqs.
+    - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies ```
+- List the maximum Freq.
+    - ```  cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq ```
+- List the minimum Freq.
+    - ```  cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq ```
+- List the current Freq.
+    - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq ```
+- Better ... watch the cpufreq it in realtime...
+    - ```  watch -n 0.1 cat /sys/devices/system/cpu/cpu0*/cpufreq/scaling_cur_freq ```
+
+This is can be accessed more easily with the linux tool `cpupower`
+```
+cpupower -c 0 frequency-info
+```
+
+
 
 
 
 <h2 id="profiler">Profilers</h2>
-
-<h2 id="libraries">Libraries</h2>
-
-
-## Simple Matrix multiplication
-How to compile compile the program:
-```
-module purge
-module load 2022
-module load foss/2022a
-
-g++ -fopenmp mat_mul.cpp -o mat_mul
-```
-Note: `-fopenmp` needed here because we use a simple OpenMP parallelization example.
-
-How to run:
-```
-./mat_mul
-```
-Suggestion: Play around with the `OMP_NUM_THREADS` for your execution
-```
-OMP_NUM_THREADS=2 ./mat_mul
-```
-
-# Energy Monitoring Excersize
 
 ## AMDuProf
 ```
@@ -185,6 +158,9 @@ Profile temperature
 ```
 
 
+
+<h2 id="libraries">Libraries</h2>
+
 ## 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
 How to compile a c++ source code with PMT library: All you need to do is load the PMT module on Snellius and link to it ( `-lpmt`)  during compilation....
 ```
@@ -201,6 +177,7 @@ Now run it and see what you observe.....
 ```
 
 -------
+
 
 ## How does Performance, Power and Energy Scale?
 
