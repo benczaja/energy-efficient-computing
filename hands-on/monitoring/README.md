@@ -155,6 +155,30 @@ AMD uProf is also installed on Snellius....
 module load 2022
 module load AMD-uProf/4.0.341
 ```
+
+```
+AMDuProfCLI is a command-line tool for AMD uProf Profiler.
+
+Usage: AMDuProfCLI [--version] [--help] COMMAND [<Options>] <PROGRAM> [<ARGS>]
+
+Following are the supported COMMANDs:
+  collect       Run the given program and collects the profile samples.
+  timechart     Collects the system characteristics like power, thermal and frequency.
+  report        Process the profile-data file and generates the profile report.
+  translate     Process the raw profile-data files and save those into database files.
+  info          Displays generic information about system, CPU etc.
+
+PROGRAM
+  The launch application to be profiled.
+
+ARGS
+  The list of arguments for the launch application.
+
+Run 'AMDuProfCLI COMMAND -h' for more information on a specific command.
+```
+
+
+
 Display system information
 ```
 AMDuProfCLI info --system
