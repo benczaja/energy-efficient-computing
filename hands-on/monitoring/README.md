@@ -184,7 +184,15 @@ Profile temperature
  AMDuProfCLI timechart --event temperature -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 200 200 
 ```
 
+#### Helpful plotting script (plot_AMD_csv.py)
 
+There is a simple python plotting script that will convert `timechart.csv` to `timechart_plot.png`. Caveats are that it will only plot one event at a time.... i.e. ` --event core=0-5,frequency` will work BUT `--event core=0-5,frequency,power` WILL NOT.
+The script (`plot_AMD_csv.py`) is located in `~/energy-efficient-computing/hands-on/scripts`
+EXAMPLE USAGE:
+```
+python ../scripts/plot_AMD_csv.py AMDuProf_output/AMDuProf-mat_mul-Timechart_May-30-2023_16-01-36/timechart.csv
+```
+This will create a .png `timechart_plot.png` in the directory where the profile data is. In the example above that is `AMDuProf_output/AMDuProf-mat_mul-Timechart_May-30-2023_16-01-36/timechart_plot.png`
 
 <h2 id="libraries">Libraries</h2>
 
