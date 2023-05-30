@@ -5,6 +5,7 @@
 2. [Linux tools](#linux)
 3. [Profilers](#profiler)
 4. [Libraries](#libraries)
+5. [Excersizes](#excersizes)
 
 
 <h2 id="concepts">Basic Concepts</h2>
@@ -214,7 +215,10 @@ Now run it and see what you observe.....
 -------
 
 
-## How does Performance, Power and Energy Scale?
+
+<h2 id="excersizes">Excersizes</h2>
+
+### 1. How does Performance, Power and Energy Scale?
 
 <div class="image-single-row">
           <img style="height:250px;width:30%" src="images/size_v_time.png"></img>
@@ -240,3 +244,7 @@ module load Python/3.10.4-GCCcore-11.3.0
 pip install matplotlib --user
 pip install numpy --user
 ```
+
+
+### 2. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
+-- Can you reproduce Power Frequency Relationship for the AMD ROME nodes of Snellius?
