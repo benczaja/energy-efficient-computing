@@ -197,19 +197,13 @@ AMDuProfCLI timechart --list
 
 ### Exmaple Excersizes
 
-Profile specific core/s power and set the affinity of the program to the core
+1. Profile specific core/s power and set the affinity of the program to the core..
 ```
 AMDuProfCLI timechart --event core=0-3,power -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 200 200 
 ```
-Profile the Frequency
-```
-AMDuProfCLI timechart --event core=0-5,frequency -o AMDuProf_output --interval 500 --affinity 1 ../bin/mat_mul 200 200 
-```
+2. Profile the Frequency?
+3. Profile Temperature?
 
-Profile temperature
-```
- AMDuProfCLI timechart --event temperature -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 200 200 
-```
 
 #### Helpful plotting script (plot_AMD_csv.py)
 
@@ -220,6 +214,18 @@ EXAMPLE USAGE:
 python ../scripts/plot_AMD_csv.py AMDuProf_output/AMDuProf-mat_mul-Timechart_May-30-2023_16-01-36/timechart.csv
 ```
 This will create a .png `timechart_plot.png` in the directory where the profile data is. In the example above that is `AMDuProf_output/AMDuProf-mat_mul-Timechart_May-30-2023_16-01-36/timechart_plot.png`
+
+
+### LIKWID (“Like I Knew What I’m Doing.”)
+> https://github.com/RRZE-HPC/likwid
+
+Analogus to AMDuProf.
+```
+ likwid-perfctr -g ENERGY -C 1 ../bin/mat_mul 200 200
+ ```
+
+Since LIKWID is a non "native" AMD tool it requires a special daemon to access the readable and writeable MSR device files, https://github.com/RRZE-HPC/likwid/wiki/likwid-accessD . Since Snellius is a public shared (Mostly AMD machine) we will stick to the AMD tooling.
+
 
 <h2 id="libraries">Libraries</h2>
 
