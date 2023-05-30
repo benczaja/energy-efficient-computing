@@ -30,7 +30,7 @@ Do we optimize for Power or for Energy?
 > Source (Mete Balci (https://metebalci.com))
 
 
-### How does Power scale with Frequency
+### How does Power scale with Frequency?
 
 
 The power consumption of an integrated circuit (such as a processor) is proportional linearly to frequency and quadratically to voltage.
@@ -40,7 +40,7 @@ The power consumption of an integrated circuit (such as a processor) is proporti
 ![Power Frequency Relationship](P_v_freq_example.png)
 > Image Source: "CPU Power Consumption Experiments and Results Analysis of Intel i7-4820K" Matthew Travers m.travers@newcastle.ac.uk
 
-### What is Frequency 
+### What is Frequency?
 
 The Frequency or "clock speed" of your CPU is a measure of the number of cycles a CPU executes per second. This value is measured in GHz (gigahertz). A “cycle” (also called a instruction cycle or fetch-execute cycle) is the basic unit of operation that a CPU does to "compute". During each cycle, billions of transistors within the processor open and close . This is how the CPU executes the calculations contained in the instructions it receives.
 
@@ -119,14 +119,37 @@ This is can be accessed more easily with the linux tool `cpupower`
 ```
 cpupower -c 0 frequency-info
 ```
-
-
+or watch it live
+```
+watch -n 0.1 cpupower -c 0 frequency-info
+```
 
 
 
 <h2 id="profiler">Profilers</h2>
 
-### AMDuProf
+---
+
+<mark style="background: #FF0800!important">**!!!! **Attention** !!!!**</mark>
+
+You need special prvialges in order to access the "all" of the Hardward counters.
+to do this on Snellius submit a job with the contstraint `--constraint=hwperf`
+
+EXAMPLE USAGE:
+```
+salloc -p thin --exclusive -t 04:00:00 --constraint=hwperf
+```
+
+---
+
+### AMD uProf
+
+AMD uProf (“MICRO-prof”) is a software profiling analysis tool for x86 applications running on Windows, Linux and FreeBSD operating systems and provides event information unique to the AMD “Zen”-based processors and AMD INSTINCT™ MI Series accelerators. AMD uProf enables the developer to better understand the limiters of application performance and evaluate improvements.
+
+Read more about AMD uProf here https://www.amd.com/en/developer/uprof.html
+
+AMD uProf is also installed on Snellius....
+
 ```
 module load 2022
 module load AMD-uProf/4.0.341
