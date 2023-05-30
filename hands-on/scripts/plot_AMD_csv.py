@@ -42,6 +42,7 @@ if "power" in comblist:
     delta_t += float(time_end.values[0][3])/1000 -   float(time_start.values[0][3])/1000.   #miliseconds in secs
     total_energy = sum(total_energy)*delta_t/3600 # Energy usage in Wh
     ax.set_title("ENERGY USAGE %0.2f Wh" % total_energy)
+    ax.set_ylabel("Core Power (W)")
 
 # Add a legend
 pos = ax.get_position()
