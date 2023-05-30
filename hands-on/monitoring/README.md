@@ -37,7 +37,7 @@ The power consumption of an integrated circuit (such as a processor) is proporti
 
 **P ~ f V²**
 
-![Power Frequency Relationship](P_v_freq_example.png)
+![Power Frequency Relationship](images/P_v_freq_example.png)
 > Image Source: "CPU Power Consumption Experiments and Results Analysis of Intel i7-4820K" Matthew Travers m.travers@newcastle.ac.uk
 
 ### What is Frequency?
@@ -162,24 +162,26 @@ Interesting commands
 List the available "events"
 ```
 AMDuProfCLI info --list predefined-events
+
+AMDuProfCLI info --list collect-configs
 ```
-List the available " system events" availble from timechart
+List the available "system events" availble from timechart
 ```
 AMDuProfCLI timechart --list
 ```
 
 Profile specific core/s power and set the affinity of the program to the core
 ```
-AMDuProfCLI timechart --event core=0-3,power -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 
+AMDuProfCLI timechart --event core=0-3,power -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 200 200 
 ```
 Profile the Frequency
 ```
-AMDuProfCLI timechart --event core=0-5,frequency -o AMDuProf_output --interval 500 --affinity 1 ../bin/mat_mul 
+AMDuProfCLI timechart --event core=0-5,frequency -o AMDuProf_output --interval 500 --affinity 1 ../bin/mat_mul 200 200 
 ```
 
 Profile temperature
 ```
- AMDuProfCLI timechart --event temperature -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 
+ AMDuProfCLI timechart --event temperature -o AMDuProf_output --interval 10 --affinity 1 ../bin/mat_mul 200 200 
 ```
 
 
@@ -207,9 +209,9 @@ Now run it and see what you observe.....
 ## How does Performance, Power and Energy Scale?
 
 <div class="image-single-row">
-          <img style="height:250px;width:30%" src="size_v_time.png"></img>
-          <img style="height:250px;width:30%" src="size_v_joule.png"></img>
-          <img style="height:250px;width:30%" src="size_v_watt.png"></img>
+          <img style="height:250px;width:30%" src="images/size_v_time.png"></img>
+          <img style="height:250px;width:30%" src="images/size_v_joule.png"></img>
+          <img style="height:250px;width:30%" src="images/size_v_watt.png"></img>
 </div>
 
 ### Run the "Energy study script"
