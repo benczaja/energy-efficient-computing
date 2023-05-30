@@ -129,19 +129,17 @@ watch -n 0.1 cpupower -c 0 frequency-info
 
 <h2 id="profiler">Profilers</h2>
 
----
 
-<mark style="background: #FF0800!important">**!!!! **Attention** !!!!**</mark>
-
-You need special prvialges in order to access the "all" of the Hardward counters.
-to do this on Snellius submit a job with the contstraint `--constraint=hwperf`
-
-EXAMPLE USAGE:
-```
-salloc -p thin --exclusive -t 04:00:00 --constraint=hwperf
-```
-
----
+> <mark style="background: #FF0800!important">**!!!! **Attention** !!!!**</mark>
+>
+> You need special prvialges in order to access the "all" of the Hardward counters.
+to do this on Snellius submit a job with the contstraint..                         
+> `--constraint=hwperf`
+>
+> EXAMPLE USAGE:
+>```
+>salloc -p thin --exclusive -t 04:00:00 --constraint=hwperf
+>```
 
 ### AMD uProf
 
@@ -177,23 +175,27 @@ ARGS
 Run 'AMDuProfCLI COMMAND -h' for more information on a specific command.
 ```
 
-
+### Interesting commands
 
 Display system information
 ```
 AMDuProfCLI info --system
 ```
-Interesting commands
 List the available "events"
 ```
 AMDuProfCLI info --list predefined-events
-
+```
+List predefined profiles
+```
 AMDuProfCLI info --list collect-configs
 ```
 List the available "system events" availble from timechart
 ```
 AMDuProfCLI timechart --list
 ```
+
+
+### Exmaple Excersizes
 
 Profile specific core/s power and set the affinity of the program to the core
 ```
