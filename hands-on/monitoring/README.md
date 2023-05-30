@@ -9,6 +9,35 @@
 
 <h2 id="concepts">Basic Concepts</h2>
 
+### What is Power? What is Energy? And how do I control it?
+
+ -  **Power (W or kW)** is the rate of doing work, measured in Watts, and is represented by the letter P. It is an "instintatious" unit. It gives you an idea of how much work can be done in a unit of time. 
+
+    - Lighthouse light bulb ~ 1000 W
+    - Reading light  bulb ~ 15 W
+
+ -  **Energy (Joule or KWh)** is the combination of current (I) and electric potential (V) that is delivered by a circuit. It can be thought of the amount of Power delivered by a circuit over a period of time... It is often measured in daily appliances (and your energy bill) as kilowatt-hour (kWh). 
+
+    - Energy required to run the Light house for a second .... 0.27 kWh
+    - Energy required to run the reading light for an hour .... 0.015 kWh
+
+Do we optimize for Power or for Energy?
+
+> 1. "Turn off the Power" ... Eliminate the power consumption of a subsystem (a core or other resources like clock or cache) by completely powering it down (so cutting down the voltage, reducing it to zero)
+>
+> 2. "Scale the Frequency" ... Decrease the power consumption by decreasing the voltage and/or the frequency of the subsystem and/or the whole processor
+>
+> Source (Mete Balci (https://metebalci.com))
+
+
+### How does Power scale with Frequency
+
+
+The power consumption of an integrated circuit (such as a processor) is proportional linearly to frequency and quadratically to voltage.
+
+**P ~ f V²**
+
+
 ### What is Frequency 
 
 The Frequency or "clock speed" of your CPU is a measure of the number of cycles a CPU executes per second. This value is measured in GHz (gigahertz). A “cycle” (also called a instruction cycle or fetch-execute cycle) is the basic unit of operation that a CPU does to "compute". During each cycle, billions of transistors within the processor open and close . This is how the CPU executes the calculations contained in the instructions it receives.
@@ -36,13 +65,57 @@ This is can be accessed more easily with the linux tool `cpupower`
 cpupower -c 0 frequency-info
 ```
 
+
+
 ### C-States/P-States
+CPU Idle States or C-states in a x86 architecture support various states in which parts of the CPU are deactivated or run at lower performance settings. This allows systems to save power by partially deactivating CPUs that are not in use.
 
+    There are several Core States, or C-states, that an AMD EPYC processor can idle within:
+    •   C0: active. This is the active state while running an application.
+    •   C1: idle
+    •   C2: idle and power gated. This is a deeper sleep state and will have a greater latency when moving back to the C0 state compared with when the CPU is coming out of C1.
 
-### What is Power
-### What is Energy
+P-states means the CPU core is also in C0 state because it has to be powered to execute a code. P-states basically allow to change the voltage and frequency (in other words operating point) of the CPU core to decrease the power consumption. There are a set of P-states which corresponds to different operating points (voltage-frequency pairs), and a P-state refers one such operating point. The highest (frequency and voltage) operating point is the maximum performance state which is P0.
+#### AMD EPYC (Zen2+) P-states 
+```
+Highest Perf ------>+-----------------------+                         +-----------------------+
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |          Max Perf  ---->|                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+Nominal Perf ------>+-----------------------+                         +-----------------------+
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |      Desired Perf  ---->|                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+ Lowest non-        |                       |                         |                       |
+ linear perf ------>+-----------------------+                         +-----------------------+
+                    |                       |                         |                       |
+                    |                       |       Lowest perf  ---->|                       |
+                    |                       |                         |                       |
+ Lowest perf ------>+-----------------------+                         +-----------------------+
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+                    |                       |                         |                       |
+         0   ------>+-----------------------+                         +-----------------------+
 
-### How does Power scale with Frequency
+                                    AMD P-States Performance Scale
+
+```
+
 
 
 <h2 id="linux">Linux tools</h2>
