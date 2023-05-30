@@ -1,6 +1,60 @@
-# Hands on Examples
-1. Simple saxpy (single precision a*x + b)
-2. Simple matrix multiplication 
+# Energy and power monitoring hands on session:
+## Section Outline
+
+1. [Basic Concepts](#concepts)
+2. [Linux tools](#linux)
+3. [Profilers](#profiler)
+4. [Libraries](#libraries)
+
+
+<h2 id="concepts">Basic Concepts</h2>
+
+### What is Frequency 
+
+The Frequency or "clock speed" of your CPU is a measure of the number of cycles a CPU executes per second. This value is measured in GHz (gigahertz). A “cycle” (also called a instruction cycle or fetch-execute cycle) is the basic unit of operation that a CPU does to "compute". During each cycle, billions of transistors within the processor open and close . This is how the CPU executes the calculations contained in the instructions it receives.
+
+In order to get an overview of the CPU arctecture of the physical (host) system use the linux tool `lscpu`. 
+```
+lscpu 
+```
+
+You can look at the files that show you the current and available rfrequencies of your CPU. Lets look at CPU #0 for example....
+
+- List the available Freqs.
+    - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies ```
+- List the maximum Freq.
+    - ```  cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq ```
+- List the minimum Freq.
+    - ```  cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq ```
+- List the current Freq.
+    - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq ```
+- Better ... watch the cpufreq it in realtime...
+    - ```  watch -n 0.1 cat /sys/devices/system/cpu/cpu0*/cpufreq/scaling_cur_freq ```
+
+This is can be accessed more easily with the linux tool `cpupower`
+```
+cpupower -c 0 frequency-info
+```
+
+### C-States/P-States
+
+
+### What is Power
+### What is Energy
+
+### How does Power scale with Frequency
+
+
+<h2 id="linux">Linux tools</h2>
+
+### Here is where we want some content
+
+
+
+<h2 id="profiler">Profilers</h2>
+
+<h2 id="libraries">Libraries</h2>
+
 
 ## Simple Matrix multiplication
 How to compile compile the program:
