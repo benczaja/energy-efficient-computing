@@ -18,7 +18,7 @@ void openmp_saxpy(int n, float a, float * x, float * y){
 
     printf("(OpenMP) saxpy of Array of size (%d)\n",n);
     printf("Using %d Threads\n", num_threads);
-    #pragma parallel for
+    #pragma omp parallel for
     for(int i=0; i<n; i++){
         y[i] = a * x[i] + y[i];
     }
