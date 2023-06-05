@@ -50,26 +50,34 @@ if __name__ == "__main__":
     ROWS = args.ROWS
     COLUMNS = args.COLUMNS
 
-    #Define Matrix A
+    #Define Matrix A ((list of lists))
     A = [[random() for x in range(ROWS)] for y in range(COLUMNS)]
-    #Define Matrix B
+    #Define Matrix B (list of lists)
     B = [[random() for x in range(ROWS)] for y in range(COLUMNS)]
 
     # choose simple mat mul
     if args.simple and not args.numpy: #Dumb logic here
-        #And now time the two runs and compare the results
         print("(Simple) Matrix Multiplication of 2D matricies of equal sizes ("+str(ROWS)+", "+str(COLUMNS)+")")
+
+        #  start the clock
         start = time.perf_counter_ns()
+
         simple_matrix_multiply(A,B)
+        
+        #  stop the clock
         end = time.perf_counter_ns()
-        print("Time of Serial is " +str(round(end-start)/1e9) + " s")
+        print("Time of Serial is " +str(round(end-start)/1e9) + " s") # convert to seconds
 
     # choose NumPy mat mul
     if args.numpy:
-        #And now time the two runs and compare the results
         print("(NumPy) Matrix Multiplication of 2D matricies of equal sizes ("+str(ROWS)+", "+str(COLUMNS)+")")
+
+        #  start the clock
         start = time.perf_counter_ns()
+        
         numpy_matrix_multiply(A,B)
+
+        #  stop the clock
         end = time.perf_counter_ns()
-        print("Time of Numpy is " +str(round(end-start)/1e9) + " s")
+        print("Time of Numpy is " +str(round(end-start)/1e9) + " s") # convert to seconds
 
