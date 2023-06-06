@@ -3,7 +3,7 @@
 ## Sessions
 1. [Monitoring tutorial](monitoring/README.md)
 2. [DVFS tutorial](DVFS/README.md)
-3. [Kernel Tuner tutorial](https://github.com/KernelTuner/kernel_tuner)
+3. [Kernel Tuner tutorial](KT/README.md)
 3. [EAR tutorial](EAR/README.md)
 
 ## Sources are located in the `src/`

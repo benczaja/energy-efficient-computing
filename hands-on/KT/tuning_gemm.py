@@ -9,7 +9,7 @@ import json
 import numpy as np
 import kernel_tuner
 
-from kernel_tuner.observers import nvml, NVMLObserver
+from kernel_tuner.observers.nvml import NVMLObserver
 
 
 from common import *
@@ -25,22 +25,12 @@ def ops(m, n, k):
 def tune(inputs, pwr_limit=None, device=0):
     path = os.path.dirname(os.path.realpath(__file__)) + "/gemm/"
 
-    # n = np.int32(32)
-    # m = np.int32(16)
-    # k = np.int32(32)
-
     total_flops = ops(*inputs)
 
     m, n, k = [np.int32(i) for i in inputs]
 
-    # // Matrices are accessed as follows:
-    # // A: [k*M + m], with 'k' ranging from 0:K and 'm' from 0:M (m,k,m)
-    # // B: [k*N + n], with 'k' ranging from 0:K and 'n' from 0:N (n,k,n)
-    # // C: [n*M + m], with 'n' ranging from 0:N and 'm' from 0:M (m,n,m)
-
     A = np.array(np.random.randn(m, k), order="F").astype(np.float32)
     B = np.array(np.random.randn(k, n), order="F").astype(np.float32)
-    # C = np.array(np.random.randn(m, n), order='F').astype(np.float32)
     C = np.zeros((m, n), order="F").astype(np.float32)
 
     alpha, beta = np.random.randn(2).astype(np.float32)
@@ -89,23 +79,6 @@ def tune(inputs, pwr_limit=None, device=0):
     tune_params["SB"] = [0, 1]
     tune_params["PRECISION"] = [32]
 
-    # dryrun
-    # tune_params["MWG"] = [64, 128]
-    # tune_params["NWG"] = [64, 128]
-    # tune_params["KWG"] = [32]
-    # tune_params["MDIMC"] = [16]
-    # tune_params["NDIMC"] = [16]
-    # tune_params["MDIMA"] = [16]
-    # tune_params["NDIMB"] = [16]
-    # tune_params["KWI"] = [2]
-    # tune_params["VWM"] = [4]
-    # tune_params["VWN"] = [4]
-    # tune_params["STRM"] = [0]
-    # tune_params["STRN"] = [0]
-    # tune_params["SA"] = [1]
-    # tune_params["SB"] = [1]
-    # tune_params["PRECISION"] = [32]
-
     problem_size = (m, n)
 
     grid_div_x = ["MWG"]
@@ -123,17 +96,12 @@ def tune(inputs, pwr_limit=None, device=0):
 
     restrict += ["not (MWG == 128 and NWG == 128 and MDIMC == 8 and NDIMC == 8)"]
 
-    # observables = ["ps_energy", "ps_power"]
-    # ps_observer = PowerSensorObserver(observables, device="/dev/ttyACM0")
-
-    # nvmlobserver = NVMLObserver(["nvml_energy", "temperature", "core_freq", "mem_freq", "gr_voltage"],
-    #                             save_all=True, nvidia_smi_fallback="nvidia-smi", use_locked_clocks=True)
     nvmlobserver = NVMLObserver(
         ["nvml_energy", "temperature", "core_freq", "mem_freq"],
         save_all=True,
         nvidia_smi_fallback="/cm/shared/package/utils/bin/run-nvidia-smi",
         use_locked_clocks=False,
-    )  # /cm/shared/package/utils/bin/run-nvidia-smi
+    )
 
     metrics = get_metrics(total_flops)
     filename = "GEMM_NVML_" + device_name + "_" + energy_method

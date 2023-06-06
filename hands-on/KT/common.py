@@ -8,13 +8,14 @@ import kernel_tuner
 
 drv.init()
 
-from kernel_tuner.nvml import nvml
+from kernel_tuner.observers.nvml import nvml
 
 
 def get_device_name(device):
     return drv.Device(device).name().replace(" ", "_")
 
 
+# TODO: fix the node names and PATH for snellius
 def get_fallback():
     if os.uname()[1].startswith("node0"):
         return "/cm/shared/package/utils/bin/run-nvidia-smi"
