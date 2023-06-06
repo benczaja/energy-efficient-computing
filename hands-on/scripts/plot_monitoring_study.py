@@ -1,32 +1,49 @@
 from matplotlib import pyplot as plt
 import numpy as np
+import sys
 
-data = np.loadtxt("results.txt").T
+if not sys.argv[1]:
+    print("You need to pass this script a results.txt file (or multiple results.txt /s)")
+    exit (1)
+if ".txt" not in sys.argv[1]:
+    print("Need to pass this script a .txt file")
+    exit (1)
 
-Size=data[0] 
-Time=data[1] 
-Joule=data[2]  
-Watt=data[3] 
+fig, axs = plt.subplots(3, 1,sharex=True)
 
+time_max = 0
+joule_max = 0
+watt_max = 0
 
-plt.scatter(Size,Time)
-plt.xlabel("Matrix Size")
-plt.ylabel("Execution Time (s)")
-plt.ylim(0,np.max(Time))
-plt.savefig("size_v_time.png",dpi=150)
-plt.close()
+for infile in sys.argv[1:]:
 
-plt.scatter(Size,Joule)
-plt.xlabel("Matrix Size")
-plt.ylabel("Energy (J)")
-plt.ylim(0,np.max(Joule))
-plt.savefig("size_v_joule.png",dpi=150)
-plt.close()
+    data = np.loadtxt(infile).T
 
-plt.scatter(Size,Watt)
-plt.xlabel("Matrix Size")
-plt.ylabel("Power (W)")
-plt.ylim(0,np.max(Watt))
-plt.savefig("size_v_watt.png",dpi=150)
-plt.close()
+    Size=data[0] 
+    Time=data[1] 
+    Joule=data[2]  
+    Watt=data[3] 
+
+    if np.max(Time) > time_max:
+        time_max=np.max(Time)
+    if np.max(Joule) > joule_max:
+        joule_max=np.max(Joule)
+    if np.max(Watt) > watt_max:
+        watt_max=np.max(Watt)
+
+    axs[0].scatter(Size,Time,label=infile,s=10)
+    axs[0].set_ylabel("Execution Time (s)")
+    axs[0].set_ylim(-5,time_max+5)
+    axs[0].legend(loc =2, fontsize = 'xx-small')
+
+    axs[1].scatter(Size,Joule,s=10)
+    axs[1].set_ylabel("Energy (J)")
+    axs[1].set_ylim(-5,np.max(joule_max)+5)
+
+    axs[2].scatter(Size,Watt,s=10)
+    axs[2].set_ylabel("Power (W)")
+    axs[2].set_ylim(-5,500)
+    axs[2].set_xlabel("Matrix Size")
+
+plt.savefig("time_energy_power.png",dpi=150)
 
