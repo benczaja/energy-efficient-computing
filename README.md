@@ -6,29 +6,25 @@
 - (11:00-12:00) Course introduction [Sagar Dolas SURF]
     - Define goals of course ... What is energy efficiency? 
     - Overview of data center energy usage/footprint
-    - What is Power, Energy, and DVFS (maybe Ana could help here)?
 - (12:00-13:00) Lunch
 - (13:00-13:45) Introduction/refresher on system architecture [Prof. Ana Lucia Varbanescu UvA/UTwente]
-    - What is a CPU? (Intro to multi core CPUs and modern cluster architecture)
+    - What is a CPU? (Intro to multi-core CPUs and modern cluster architecture)
     - What is a GPU? (Intro to General purpose GPUs)
 - (13:45-14:30) Introduction/refresher on characteristics of applications [Xavier Álvarez Farré SURF (Online)]
     - Compute/Memory Bound, Heterogeneous, Parallel
-    - Saxpy
-    - SGEMM
 - (14:30-15:00) Coffee Break & Tech-Setup
 - (15:00-17:00) [Monitoring tools/techniques tutorial](hands-on/monitoring/README.md): Introduction to tools that can be used to monitor CPU performance and energy consumption [Benjamin Czaja SURF]
+    - Introduction to Concepts:
+        - What is Energy, Power, Frequency, P-States, C-States?
     - Introduction to tools:
-        - Likwid/AMD-uProf
+        - AMD-uProf
         - PMT
-        - Kernal Tuner
-        - EAR 
-    - Monitoring Excersize
+    - Monitoring Excersize/s
 
 
 ### Day 2  - June 16 (start 10:00 end 17:00)
 
 - (10:00-10:45) Define energy efficiency and ways to improve energy efficiency (algorithms, scheduling, DVFS) [Sagar Dolas SURF]
-    - What are P-States, C-States?
     - How can we better use resources 
 - (10:45-11:00) Coffee Break
 - (11:00-12:00) [DVFS by hand tutorial](hands-on/DVFS/README.md) [Benjamin Czaja SURF]
