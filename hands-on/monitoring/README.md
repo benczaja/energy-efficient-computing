@@ -279,7 +279,3 @@ module load Python/3.10.4-GCCcore-11.3.0
 pip install matplotlib --user
 pip install numpy --user
 ```
-
-
-### 2. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
--- Can you reproduce Power Frequency Relationship for the AMD ROME nodes of Snellius?
