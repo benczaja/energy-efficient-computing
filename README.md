@@ -18,10 +18,11 @@
         - What is Energy, Power, Frequency, P-States, C-States?
     - Introduction to tools:
         - AMD-uProf
-        - PMT
+        -  Power Measurement Toolkit (PMT)
     - Monitoring Excersize/s
 
-
+---
+---
 ### Day 2  - June 16 (start 10:00 end 17:00)
 
 - (10:00-10:45) Define energy efficiency and ways to improve energy efficiency (algorithms, scheduling, DVFS) [Sagar Dolas SURF]
@@ -38,4 +39,3 @@
 - (16:00-17:00) Hands-on with KernelTuner and/or EAR [Alessio Sclocco, Benjamin Czaja]
     - Choice given to the participants using a couple of pre-defined applications and/or their own applications
 
----
