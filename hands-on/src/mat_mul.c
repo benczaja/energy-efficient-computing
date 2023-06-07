@@ -47,7 +47,7 @@ void openmp_matrix_multiply(float** A, float** B, float** C, int ROWS, int COLUM
         {
             for (int k = 0; k < COLUMNS; ++k) 
             {
-                C[i][j] += A[i][k] * B[k][j];
+                C[i][j] = C[i][j] + A[i][k] * B[k][j];
             }
         }
     }
