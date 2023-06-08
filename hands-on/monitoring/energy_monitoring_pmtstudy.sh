@@ -4,7 +4,7 @@
 #### ATTENTION!!! HERE IS WHERE YOU WANT TO CHANGE 
 
 # specify the results file to append to
-RESULTS_FILE=results_omp32.txt
+RESULTS_FILE=results_serial.txt
 
 #### ATTENTION!!! HERE IS WHERE YOU WANT TO CHANGE 
 #### ATTENTION!!! HERE IS WHERE YOU WANT TO CHANGE 
@@ -25,10 +25,10 @@ do
     echo "Running Size $matrix_size $matrix_size"
 
     # SERIAL Version
-    #../bin/mat_mul_pmt -s $matrix_size $matrix_size > templog.txt
+    ../bin/mat_mul_pmt -s $matrix_size $matrix_size > templog.txt
 
     # OpenMP Version
-    OMP_NUM_THREADS=32 OMP_PROC_BIND=CLOSE ../bin/mat_mul_pmt -p $matrix_size $matrix_size > templog.txt
+    #OMP_NUM_THREADS=2 OMP_PROC_BIND=CLOSE ../bin/mat_mul_pmt -p $matrix_size $matrix_size > templog.txt
 
     # What follows here is some messy bash stuff to "grep" the results from the runs
     Size=$(sed -n '/Matrix Size:/p' templog.txt | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
