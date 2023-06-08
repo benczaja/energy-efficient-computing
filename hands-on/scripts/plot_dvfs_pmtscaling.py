@@ -36,7 +36,7 @@ Joule = np.array(Joule)
 Watt  = np.array(Watt)
 Freq  = np.array(Freq)
 
-axs[0].set_title("Matrix Multiplication ({} x {}) @128 OpenMP Threads".format(Size[0],Size[0]))
+axs[0].set_title("Matrix Multiplication ({} x {}) ".format(Size[0],Size[0]))
 axs[0].plot(Freq,Time,label=infile)
 axs[0].set_ylabel("Execution Time (s)")
 
