@@ -257,20 +257,20 @@ Now run it and see what you observe.....
 
 <div class="image-single-row">
           <img style="height:250px;width:30%" src="images/size_v_time.png"></img>
-          <img style="height:250px;width:30%" src="images/size_v_joule.png"></img>
-          <img style="height:250px;width:30%" src="images/size_v_watt.png"></img>
+          <img style="height:250px;width:30%" src="images/Black_question_mark.png"></img>
+          <img style="height:250px;width:30%" src="images/Black_question_mark.png"></img>
 </div>
 
 ### Run the "Energy study script"
 
 
 ```
-sh energy_monitoring_study.sh
+sh energy_monitoring_pmtstudy.sh 
 ```
 This will output the results to the file `results.txt` 
 
 
-You will need python as a plotting tool, which will read in `results.txt` and plot three pngs (`size_v_joule.png`,`size_v_time.png`, `size_v_watt.png`)
+You will need python as a plotting tool, which will read in `results.txt` and plot time, energy, and power in one png
 
 ```
 module load 2022
@@ -279,3 +279,13 @@ module load Python/3.10.4-GCCcore-11.3.0
 pip install matplotlib --user
 pip install numpy --user
 ```
+#### Plotting tool usage
+
+```
+python ../scripts/plot_monitoring_pmtstudy.py results.txt 
+```
+Also
+```
+python ../scripts/plot_monitoring_pmtstudy.py results.txt results_two.txt results_three.txt
+```
+The resulting plots will be stored in `time_energy_power.png`
