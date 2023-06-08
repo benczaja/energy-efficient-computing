@@ -239,6 +239,8 @@ PMT is a high-level software library capable of collecting power consumption mea
 #### Capabilities:
 
 ![PMT](images/PMT.png)
+> Image Source: 
+https://doi.org/10.48550/arXiv.2210.03724
 
 #### C++ example:
 ```cpp
