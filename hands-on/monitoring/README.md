@@ -274,12 +274,12 @@ from pypmt import joules, seconds, watts
 # Initialize the Sensor
 pmt = pypmt.Rapl.create()
 
-# Read from the PMT Sensor
+# Read from the Sensor
 start = pmt.read()
 
 some_function_that_you_want_to_time()
 
-# Read from the PMT Sensor
+# Read from the Sensor
 end = pmt.read()
 
 print("joules {}".format(pypmt.joules(start, end)))
@@ -319,16 +319,32 @@ Now run it and see what you observe.....
           <img style="height:250px;width:30%" src="images/Black_question_mark.png"></img>
 </div>
 
-### Run the "Energy study script"
+
+### Steps to take:
+1. **Orient yourself to the `mat_mul_pmt` executable**:
+2. **Run the "energy study script:** 
+    ```
+    sh energy_monitoring_pmtstudy.sh
+    ```
+    This will output the results to the file `results.txt` 
+3. **Plot the results:**
+
+    You will need python as a plotting tool, which will read in `results.txt` and plot time, energy, and power in one png
+    ```
+    python ../scripts/plot_monitoring_pmtstudy.py results.txt 
+    ```
+    Also works....
+    ```
+    python ../scripts/plot_monitoring_pmtstudy.py results.txt results_two.txt results_three.txt
+    ```
+    The resulting plots will be stored in `time_energy_power.png`
+
+4. Can you Add more runs with varying OpenMP Threads to see how you can improve performance energy? HINT: Edit the `energy_monitoring_pmtstudy.sh` script to vary the output file ...`RESULTS_FILE=results_serial.txt`, and comment out the serial line in favor of the OpenMP line. See lines 30 and 31 of  `energy_monitoring_pmtstudy.sh`.
+        
 
 
-```
-sh energy_monitoring_pmtstudy.sh 
-```
-This will output the results to the file `results.txt` 
 
-
-You will need python as a plotting tool, which will read in `results.txt` and plot time, energy, and power in one png
+HINT: You will need python as a plotting tool, which will read in `results.txt` and plot time, energy, and power in one png
 
 ```
 module load 2022
@@ -337,13 +353,3 @@ module load Python/3.10.4-GCCcore-11.3.0
 pip install matplotlib --user
 pip install numpy --user
 ```
-#### Plotting tool usage
-
-```
-python ../scripts/plot_monitoring_pmtstudy.py results.txt 
-```
-Also
-```
-python ../scripts/plot_monitoring_pmtstudy.py results.txt results_two.txt results_three.txt
-```
-The resulting plots will be stored in `time_energy_power.png`
