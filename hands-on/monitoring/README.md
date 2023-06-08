@@ -232,7 +232,63 @@ Since LIKWID is a non "native" AMD tool it requires a special daemon to access t
 
 <h2 id="libraries">Libraries</h2>
 
-### 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
+### 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) 
+
+PMT is a high-level software library capable of collecting power consumption measurements on various hardware. The library provides a standard interface to easily measure the energy use of devices such as CPUs and GPUs in critical application sections.
+
+#### Capabilities:
+
+![PMT](images/PMT.png)
+
+#### C++ example:
+```cpp
+#include <pmt.h> // needed for PMT
+#include<iostream> // needed for CPP IO ... cout, endl etc etc
+
+// Initialize the Sensor
+auto sensor = pmt::rapl::Rapl::create();
+
+// Read from the PMT Sensor
+auto start = sensor->read();
+
+some_function_that_you_want_to_time();
+
+// Read from the PMT Sensor
+auto end = sensor->read();
+
+std::cout<<"RESULTS-------"<<std::endl;
+std::cout<<"Matrix Size: "<<ROWS<<std::endl;
+std::cout <<"PMT Seconds: "<< pmt::PMT::seconds(start, end) << " s"<< std::endl;
+std::cout <<"PMT Joules: " << pmt::PMT::joules(start, end) << " J" << std::endl;
+std::cout <<"PMT Watts: " << pmt::PMT::watts(start, end) << " W" << std::endl;
+```
+
+#### Python example:
+
+```python
+import pypmt
+from pypmt import joules, seconds, watts
+
+# Initialize the Sensor
+pmt = pypmt.Rapl.create()
+
+# Read from the PMT Sensor
+start = pmt.read()
+
+some_function_that_you_want_to_time()
+
+# Read from the PMT Sensor
+end = pmt.read()
+
+print("joules {}".format(pypmt.joules(start, end)))
+print("watts {}".format(pypmt.watts(start, end)))
+print("seconds {}".format(pypmt.seconds(start, end)))
+
+```
+
+
+#### It is available on Snellius
+
 How to compile a c++ source code with PMT library: All you need to do is load the PMT module on Snellius and link to it ( `-lpmt`)  during compilation....
 ```
 module purge
@@ -244,7 +300,7 @@ g++ -fopenmp -lpmt mat_mul_pmt.cpp -o mat_mul_pmt
 ```
 Now run it and see what you observe.....
 ```
-./mat_mul_pmt
+./bin/mat_mul_pmt 200 200
 ```
 
 -------
