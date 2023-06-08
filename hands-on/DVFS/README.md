@@ -10,30 +10,46 @@ Since Snellius is a shared public machine. It is not so easy to change CPU Freqs
 #!/bin/bash
 
 #SBATCH -p thin
-#SBATCH -t 00:10:00
+#SBATCH -n 128
+#SBATCH -t 00:30:00
 #SBATCH --exclusive 
 #SBATCH --constraint=hwperf
+#SBATCH --output=job_example.out
+#SBATCH --error=Pjob_example.err
 
 #SBATCH --ear=on
-#SBATCH --ear-policy=monitoring
-#SBATCH --ear-cpufreq=21000000
 
 module load 2022
 module load foss/2022a
-module load AMD-uProf/4.0.341
+module load pmt/1.1.0-GCCcore-11.3.0
 
-AMDuProfCLI timechart --event core=0-3,frequency -o AMDuProf_output_freq --interval 500 --affinity 1 ../bin/mat_mul 2000 -s
-AMDuProfCLI timechart --event core=0-3,power -o AMDuProf_output_power --interval 500 --affinity 1 ../bin/mat_mul 2000 -s
-
+srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1 ./executable
 ```
-
+NOTE THE.... 
+```
+srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1`
+```
 
 # Hands-on sessions
 
-## 1. Can you reduce the Energy consuption of multiplying a 2000x2000 matrix by 20%?
-
-
-## 2. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
+## 1. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
 
 - Can you reproduce Power-Frequency Relationship for the AMD ROME nodes of Snellius?
-    - You will likely have to probe this with `mat_mut` or `saxpy`
+    - You will likely have to probe this with `mat_mut` or `saxpy` or your own more sophisticated code!
+- Helpful scripts!
+    
+    Jobscript
+    ```
+    dvfs_sbatch_pmtscaling.sh
+    ```
+    >This will output a results_freq_FREQNUM.txt file for each freq that was used.
+
+    Plotting script
+
+    ```
+    python ../scripts/plot_monitoring_pmtstudy.py results_freq_*
+    ```
+
+
+
+
