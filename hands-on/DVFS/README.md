@@ -15,7 +15,7 @@ Since Snellius is a shared public machine. It is not so easy to change CPU Freqs
 #SBATCH --exclusive 
 #SBATCH --constraint=hwperf
 #SBATCH --output=job_example.out
-#SBATCH --error=Pjob_example.err
+#SBATCH --error=job_example.err
 
 #SBATCH --ear=on
 
