@@ -195,7 +195,7 @@ AMDuProfCLI timechart --list
 ```
 
 
-### Exmaple Excersizes
+### Example Excersizes
 
 1. Profile specific core/s power and set the affinity of the program to the core..
 ```
