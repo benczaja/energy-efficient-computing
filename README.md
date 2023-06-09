@@ -10,7 +10,7 @@
 
 - (13:45-14:30) Introduction/refresher on characteristics of applications [Xavier Álvarez Farré SURF (Online)]
 
-- (14:30-15:00) Coffee Break & Tech-Setup
+- (14:30-15:00) Coffee Break & Tech-Setup [Hands on overview and building of sources](hands-on/README.md)
 
 - (15:00-17:00) [Energy monitoring and DVFS tools/techniques tutorial](hands-on/monitoring/README.md): Introduction to tools that can be used to monitor CPU performance and energy consumption [Benjamin Czaja SURF]
     - Introduction to Concepts:
