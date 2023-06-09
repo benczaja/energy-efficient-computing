@@ -33,9 +33,24 @@ srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1`
 # Hands-on sessions
 
 
-## 1. Can you reduce the Energy footpring of Matrix Multiplication (10000x10000) @ 128 OpenMP threads?
+## 1. Can you reduce the Energy footprint of Matrix Multiplication (10000x10000) @ 128 OpenMP threads?
 
 - Can you reduce this by 10%?
+
+- Helpful scripts!
+    
+    Jobscript
+    ```
+    dvfs_sbatch_example_1.sh
+    ```
+    >This will output a AMDuProf_output_power_freq_$NUM/ directory for each freq that was used.
+
+    Plotting script
+
+    ```
+    python ../scripts/plot_AMD_csv.py AMDuProf_output_power_freq_1500000/AMDuProf-mat_mul-Timechart_May-30-2023_16-01-36/timechart.csv
+    ```
+    This will produce a png of the results `timechart_plot.png`, in the `AMDuProf_output_power_freq_1500000/AMDuProf-mat_mul-Timechart_May-30-2023_16-01-36/` for example.
 
 ## 2. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
 
@@ -45,7 +60,7 @@ srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1`
     
     Jobscript
     ```
-    dvfs_sbatch_pmtscaling.sh
+    dvfs_sbatch_example_2.sh
     ```
     >This will output a results_freq_FREQNUM.txt file for each freq that was used.
 
