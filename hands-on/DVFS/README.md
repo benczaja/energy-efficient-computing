@@ -32,7 +32,12 @@ srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1`
 
 # Hands-on sessions
 
-## 1. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
+
+## 1. Can you reduce the Energy footpring of Matrix Multiplication (10000x10000) @ 128 OpenMP threads?
+
+- Can you reduce this by 10%?
+
+## 2. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
 
 - Can you reproduce Power-Frequency Relationship for the AMD ROME nodes of Snellius?
     - You will likely have to probe this with `mat_mut` or `saxpy` or your own more sophisticated code!
@@ -50,6 +55,7 @@ srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1`
     python ../scripts/plot_monitoring_pmtstudy.py results_freq_*
     ```
     This will produce a png of the results `dvfs_pmt_time_energy_power.png`
+
 
 
 
