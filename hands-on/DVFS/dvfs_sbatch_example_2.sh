@@ -5,8 +5,8 @@
 #SBATCH -t 00:30:00
 #SBATCH --exclusive 
 #SBATCH --constraint=hwperf
-#SBATCH --output=job_dvfs_pmtscaling.out
-#SBATCH --error=job_dvfs_pmtscaling.err
+#SBATCH --output=job_dvfs_example_2.out
+#SBATCH --error=job_dvfs_example_2.err
 
 #SBATCH --ear=on
 
@@ -14,15 +14,14 @@ module load 2022
 module load foss/2022a
 module load pmt/1.1.0-GCCcore-11.3.0
 
-
-#warning largest known usage, 3500 x 3500
+#warning largest known usage, 3500 x 3500 ... PMT throws a seg fault at values larger than this.
 matrix_size=3000
 
-for i in {1500000..2600000..100000}
+for frequency in {1500000..2600000..100000}
 do
 
     # specify the results to append
-    RESULTS_FILE=dvfs_pmtscaling_$i.txt
+    RESULTS_FILE=dvfs_example_2_$frequency.txt
     TEMP_FILE=templog_$SLURM_JOBID.txt
 
     if [ -f "$RESULTS_FILE" ]; then
@@ -32,8 +31,8 @@ do
     fi
 
     echo "Running bin/mat_mul_pmt "
-    srun --ntasks=1 --ear-cpufreq=$i --ear-policy=monitoring --ear-verbose=1 ../bin/mat_mul_pmt -p $matrix_size $matrix_size > $TEMP_FILE
-    #../bin/mat_mul_pmt -s $i $i > $TEMP_FILE
+    srun --ntasks=1 --ear-cpufreq=$frequency --ear-policy=monitoring --ear-verbose=1 ../bin/mat_mul_pmt -p $matrix_size $matrix_size > $TEMP_FILE
+
     #just some dumb commands to "log the results"
     Size=$(sed -n '/Matrix Size:/p' $TEMP_FILE | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
     Time=$(sed -n '/PMT Seconds:/p' $TEMP_FILE | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')

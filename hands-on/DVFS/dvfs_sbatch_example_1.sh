@@ -5,15 +5,14 @@
 #SBATCH -t 00:59:00
 #SBATCH --exclusive 
 #SBATCH --constraint=hwperf
-#SBATCH --output=job_dvfs_uProfscaling_job.out
-#SBATCH --error=job_dvfs_uProfscaling_job.out
+#SBATCH --output=job_dvfs_example_1_job.out
+#SBATCH --error=job_dvfs_example_1_job.err
 
 #SBATCH --ear=on
 
 module load 2022
 module load foss/2022a
 module load AMD-uProf/4.0.341
-
 
 matrix_size=10000
 # 2600000 is the nominal freq
