@@ -67,7 +67,7 @@ srun --ntasks=1 --ear-cpufreq=1500000 --ear-policy=monitoring --ear-verbose=1`
     Plotting script
 
     ```
-    python ../scripts/plot_monitoring_pmtstudy.py results_freq_*
+    python ../scripts/plot_dvfs_example_2.py results_freq_*
     ```
     This will produce a png of the results `dvfs_pmt_time_energy_power.png`
 
