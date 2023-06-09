@@ -196,7 +196,7 @@ def tune():
     metrics["reg"] = lambda p : p["num_regs"]
 
     # call the tuner
-    results, env = kt.tune_kernel("calculate_temp", "hotspot.cu", problem_size, args, tune_params,
+    results, env = kt.tune_kernel("calculate_temp", "hotspot/hotspot.cu", problem_size, args, tune_params,
                                   metrics=metrics, grid_div_x=grid_div_x, grid_div_y=grid_div_y, cache="hotspot_cache.json",
                                   restrictions=restrictions, verbose=True, observers=observer, strategy="random_sample",
                                   strategy_options=dict(max_fevals=1000), lang="cupy",
