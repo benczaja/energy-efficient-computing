@@ -1,5 +1,7 @@
 # Work in Progress
 
+Full documentation https://servicedesk.surf.nl/wiki/pages/viewpage.action?pageId=62226671
+
 ### Load the EAR module
 ```
 module load 2022
@@ -42,5 +44,17 @@ squeue
 ```
 
 ```
-eacct -j 2884239
+eacct -j JOB_ID
+```
+Example:
+```
+[benjamic@int4 EAR]$ eacct -j 2884239
+    JOB-STEP USER       APPLICATION      POLICY NODES AVG/DEF/IMC(GHz) TIME(s)    POWER(W) GBS     CPI   ENERGY(J)    GFLOPS/W IO(MBs) MPI%  G-POW (T/U)   G-FREQ  G-UTIL(G/MEM)
+2884239-sb   benjamic   ear_sbatch_GROMA MO     1     2.57/2.60/---    386.00     596.51   ---     ---   230253       ---      ---     ---   ---           ---     ---          
+2884239-0    benjamic   ear_sbatch_GROMA MO     1     2.57/2.60/1.47   348.64     617.18   8.33    0.33  215175       0.2930   0.3     77.6  0.00/---      ---     --- 
+```
+
+helpfull comands
+```
+eacct -j 2884239 -l | less -S
 ```
