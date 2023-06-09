@@ -122,7 +122,7 @@ def tune(inputs, pwr_limit=None, device=0):
         compiler_options=["-I" + path],
         grid_div_x=grid_div_x,
         grid_div_y=grid_div_y,
-        device=0,
+        device=device,
         platform=0,
         iterations=72,
         observers=[nvmlobserver],
