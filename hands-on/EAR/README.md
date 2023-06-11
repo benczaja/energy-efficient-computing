@@ -97,6 +97,10 @@ eacct -j 2884239 -l | less -S
 
 <h2 id="excersizes">Excersizes</h2>
 
+1. What is the best policy to save energy for the GROMACS Run?
+  - How much Energy do you save? 
+  - What is the Performance degredattion for such a Run?s
+
 
 
 
