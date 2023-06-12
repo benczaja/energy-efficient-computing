@@ -35,12 +35,11 @@ Offers a remote API used by EARplug, EARGM and EAR commands. This API accepts re
 
 <h2 id="EARL">EARL (the library)</h2>
 
-Running Jobs with EAR
-MPI applications
+
 The EAR Library is automatically loaded with MPI applications when EAR is enabled. EAR supports the utilization of both mpirun/mpiexec and srun commands.
 To enable EAR in your job script when launching an MPI application you will need to include the following SBATCH options in your job script.
-srun
-srun is the preferred job launcher when using EAR, as the EARL is a SLURM plugin ! You will collect the largest amount of energy metrics when using srun
+
+`srun` is the preferred job launcher when using EAR, as the EARL is a SLURM plugin! You will collect the largest amount of energy metrics when using srun
 Running MPI applications with EARL is automatic for SLURM systems when using srun. All the jobs are monitored by EAR and the Library is loaded by default when EAR is enabled in the job script. To run a job with srun and EARL there is no need to load the EAR module. When using slurm commands for job submission, both Intel and OpenMPI implementations are supported. When using sbatch/srun or salloc to submit a job, Intel MPI and OpenMPI are supported.
 
 
@@ -127,9 +126,16 @@ The image below illustrates the usage of EAR to show the characteristics of a va
 
 ![Application_char](images/CPU_characterization_plot.png)
 
-### EAR Policies in action
+### EAR Policies
 
-By understanding an application's characteristics we can try to "guess" at which Policy will be best suited for an application. In this image we see a 2D contour map of the Energy saving vs Time savings, which shows the Energy benifit and its associated perfroamcne loss for a 4 node run of the Lattice Boltzmann Method (LBM) CFD code Palabos (https://palabos.unige.ch).
+By understanding an application's characteristics we can try to "guess" at which Policy will be best suited for an application. 
+
+
+![EAR_freq](CPU_FREQ_palabos_weakscaling_4nodes.png)
+
+
+
+In this image we see a 2D contour map of the Energy saving vs Time savings, which shows the Energy benifit and its associated perfroamcne loss for a 4 node run of the Lattice Boltzmann Method (LBM) CFD code Palabos (https://palabos.unige.ch).
 Since LBM is a memory intensive alogrithm, we see that the `min_time` policy of EAR be most effective.
 
 ![EAR_policies](images/Palabos_4node_128ppn_foss_per_policy_V2.png)
