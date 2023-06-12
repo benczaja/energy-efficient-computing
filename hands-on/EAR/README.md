@@ -131,7 +131,7 @@ The image below illustrates the usage of EAR to show the characteristics of a va
 By understanding an application's characteristics we can try to "guess" at which Policy will be best suited for an application. 
 
 
-![EAR_freq](CPU_FREQ_palabos_weakscaling_4nodes.png)
+![EAR_freq](images/CPU_FREQ_palabos_weakscaling_4nodes.png)
 
 
 
