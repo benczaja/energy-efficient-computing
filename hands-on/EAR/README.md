@@ -97,15 +97,22 @@ eacct -j 2884239 -l | less -S
 
 <h2 id="excersizes">Excersizes</h2>
 
+![GROMACS](images/GROMACS_sim.png)
+> Image Source: 
+https://www.hecbiosim.ac.uk/access-hpc/benchmarks
+
+
+Download the GROMACS benchmark run, which simulated a 465K atom system.
+```
+curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimer/benchmark.tpr -o hEGFRDimer_benchmark.tpr
+```
+
+
 1. What is the best policy to save energy for the GROMACS Run?
   - How much Energy do you save? 
   - What is the Performance degedation for using such a policy?
   - How Does simulations size change things?
-    - `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimer/benchmark.tpr -o hEGFRDimerPair_benchmark.tpr`
-    
-
-
-
-
-
+    - 20K atom system `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/Crambin/benchmark.tpr -o Crambin_benchmark.tpr`
+    - 1.4M atom system `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimerPair/benchmark.tpr -o hEGFRDimerPair_benchmark.tpr` 
+    - 3M atom system `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimerSmallerPL/benchmark.tpr -o hEGFRDimerSmallerPL_benchmark.tpr`
 
