@@ -95,6 +95,13 @@ Nominal Perf ------>+-----------------------+                         +---------
 
 ```
 
+### Goals of the course in a plot/s
+
+![GOALZ1](images/PvF.png)
+
+![GOALZ2](images/Kernel_tuner_energy.png)
+
+> Image source https://arxiv.org/pdf/2211.07260.pdf (Kernel Tuner)
 
 <h2 id="linux">Linux tools</h2>
 
