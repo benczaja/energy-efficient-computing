@@ -22,9 +22,7 @@ EAR usage on Snellius can be decomposed into two "services."
 
 2. Tools: Which include Job accounting (via the command eacct) which queries energy information of a paprticulair job or list of jobs from the the EAR database (EAR DB) on Snellius.
 
-
-<h2 id="EARL">EARL (the library)</h2>
-
+![EAR_configuration](images/EAR_config.png)
 
 ### EARD: Node Manager
 The node daemon is the component in charge of providing any kind of services that requires privileged capabilities. Current version is conceived as an external process executed with root privileges.
@@ -33,6 +31,17 @@ The EARD provides the following services, each one covered by one thread:
 Provides privileged metrics to EARL such as the average frequency, uncore integrated memory controller counters to compute the memory bandwidth, as well as energy metrics (DC node, DRAM and package energy).
 Implements a periodic power monitoring service. This service allows EAR package to control the total energy consumed in the system.
 Offers a remote API used by EARplug, EARGM and EAR commands. This API accepts requests such as get the system status, change policy settings or notify new job/end job events.
+
+
+<h2 id="EARL">EARL (the library)</h2>
+
+Running Jobs with EAR
+MPI applications
+The EAR Library is automatically loaded with MPI applications when EAR is enabled. EAR supports the utilization of both mpirun/mpiexec and srun commands.
+To enable EAR in your job script when launching an MPI application you will need to include the following SBATCH options in your job script.
+srun
+srun is the preferred job launcher when using EAR, as the EARL is a SLURM plugin ! You will collect the largest amount of energy metrics when using srun
+Running MPI applications with EARL is automatic for SLURM systems when using srun. All the jobs are monitored by EAR and the Library is loaded by default when EAR is enabled in the job script. To run a job with srun and EARL there is no need to load the EAR module. When using slurm commands for job submission, both Intel and OpenMPI implementations are supported. When using sbatch/srun or salloc to submit a job, Intel MPI and OpenMPI are supported.
 
 
 ### Example usage in a batch script
