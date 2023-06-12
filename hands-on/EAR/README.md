@@ -109,10 +109,19 @@ curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSi
 
 
 1. What is the best policy to save energy for the GROMACS Run?
-  - How much Energy do you save? 
-  - What is the Performance degedation for using such a policy?
-  - How Does simulations size change things?
-    - 20K atom system `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/Crambin/benchmark.tpr -o Crambin_benchmark.tpr`
-    - 1.4M atom system `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimerPair/benchmark.tpr -o hEGFRDimerPair_benchmark.tpr` 
-    - 3M atom system `curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimerSmallerPL/benchmark.tpr -o hEGFRDimerSmallerPL_benchmark.tpr`
+  - How much energy do you save? 
+  - What is the performance degedation for using such a policy?
+  - How does the size of the domain (simulation) change things?
+    - **20K atom system** 
+    ```
+    curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/Crambin/benchmark.tpr -o Crambin_benchmark.tpr
+    ```
+    - **1.4M atom system** 
+    ``` 
+    curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimerPair/benchmark.tpr -o hEGFRDimerPair_benchmark.tpr
+    ``` 
+    - **3M atom system** 
+    ```
+    curl -LJ https://github.com/victorusu/GROMACS_Benchmark_Suite/raw/1.0.0/HECBioSim/hEGFRDimerSmallerPL/benchmark.tpr -o hEGFRDimerSmallerPL_benchmark.tpr
+    ```
 
