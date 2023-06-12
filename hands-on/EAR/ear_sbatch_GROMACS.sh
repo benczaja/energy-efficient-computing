@@ -2,13 +2,14 @@
 
 #SBATCH -p thin
 #SBATCH -n 128
-#SBATCH -t 00:20:00
+#SBATCH -t 00:59:00
 #SBATCH --exclusive 
-#SBATCH --output=GROMACS_run_ME.out
-#SBATCH --error=GROMACS_run_ME.err
+#SBATCH --output=GROMACS_run_pair_ME.out
+#SBATCH --error=GROMACS_run_pair_ME.err
 
 #SBATCH --ear=on
 #SBATCH --ear-policy=min_energy
+#SBATCH --ear-verbose=1
 
 module load 2022
 module load foss/2022a
