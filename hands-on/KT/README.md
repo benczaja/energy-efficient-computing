@@ -11,12 +11,13 @@ module load 2022
 module load foss/2022a
 ```
 
-After the appropriate modules are loaded, we can install the Python backends for CUDA and OpenCL.
+After the appropriate modules are loaded, we can install the Python packages that we need today.
 
 ```bash
 pip install pycuda
 pip install pyopencl
 pip install cupy
+pip install pynvml
 ```
 
 While in general [Kernel Tuner](https://github.com/KernelTuner/kernel_tuner) is available via PyPI, we need a specific branch for this tutorial, so we are going to install it from GitHub.
@@ -31,7 +32,7 @@ We can also install the [KT Dashboard](https://github.com/KernelTuner/dashboard)
 pip install git+https://github.com/KernelTuner/dashboard
 ```
 
-We only need to do install all the necessary software once.
+We only need to install the necessary software once.
 
 ## GEMM (cached version)
 
@@ -50,8 +51,17 @@ After you are done, the variable `to_optimize` contains the metric that should b
 You can also examine the search space visually using the Dashboard.
 
 ```bash
-ktdashboard hands-on/KT/gemm/gemm_cache.json
+ktdashboard gemm/gemm_cache.json
 ```
 
 ## Hotspot
 
+No need to download data for the hotspot kernel, you can inspect the `tuning_hotspot.py` tuning script and try to execute it, but exploring such a large tuning space takes time.
+
+You could use a different strategy than the current one (i.e. `random_sample`), lower the number of function evaluations (currently set at `1000`), or change the objective from GFLOP/s to GFLOPS/W.
+
+You can also examine the search space visually using the Dashboard.
+
+```bash
+ktdashboard hotspot/hotspot_cache.json
+```
