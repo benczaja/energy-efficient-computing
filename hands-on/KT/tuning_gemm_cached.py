@@ -71,7 +71,7 @@ def tune():
     restrict += ["KWG % ((MDIMC * NDIMC)/NDIMB) == 0"]
     restrict += ["not (MWG == 128 and NWG == 128 and MDIMC == 8 and NDIMC == 8)"]
 
-    # 
+    #
     nvmlobserver = NVMLObserver(
         ["nvml_energy", "temperature", "core_freq", "mem_freq"],
         save_all=True,
