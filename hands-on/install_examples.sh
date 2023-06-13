@@ -1,6 +1,13 @@
 #!/bin/bash
 
-echo "Building Examples..."
+if [ -d "./bin" ] 
+then
+    echo "Building Examples in ./bin"
+else
+    mkdir bin
+    echo "Building Examples in ./bin"
+fi
+
 cd src 
 
 module purge
