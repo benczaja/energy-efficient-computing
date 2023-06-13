@@ -74,9 +74,9 @@ def tune():
     strategy = "greedy_mls"
     fevals = 100
     # If you select GFLOP/s the optimizer will improve performance
-    #   to_optimize = "GFLOP/s"
+    to_optimize = "GFLOP/s"
     # If you select GFLOPS/W the optimizer will improve energy efficiency
-    to_optimize = 'GFLOPS/W'
+    # to_optimize = 'GFLOPS/W'
 
     start = time.time()
     results, env = kt.tune_kernel(
