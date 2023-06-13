@@ -18,6 +18,7 @@ from common import *
 unit = "GFLOP"
 
 
+# Compute the number of operations that the matrix multiply performs
 def ops(m, n, k):
     return (m * n * k * 2 + 2 * m * k) / 1e9
 
