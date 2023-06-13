@@ -5,7 +5,7 @@ import numpy as np
 
 import kernel_tuner as kt
 from kernel_tuner.observers import BenchmarkObserver
-from kernel_tuner.nvml import NVMLObserver
+from kernel_tuner.observers.nvml import NVMLObserver
 
 
 def test_temporal_tiling():
