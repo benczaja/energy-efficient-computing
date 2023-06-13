@@ -95,6 +95,13 @@ Nominal Perf ------>+-----------------------+                         +---------
 
 ```
 
+### Goals of the course in a plot/s
+
+![GOALZ1](images/PvF.png)
+
+![GOALZ2](images/Kernel_tuner_energy.png)
+
+> Image source https://arxiv.org/pdf/2211.07260.pdf (Kernel Tuner)
 
 <h2 id="linux">Linux tools</h2>
 
@@ -195,7 +202,7 @@ AMDuProfCLI timechart --list
 ```
 
 
-### Exmaple Excersizes
+### Example Excersizes
 
 1. Profile specific core/s power and set the affinity of the program to the core..
 ```
@@ -232,7 +239,65 @@ Since LIKWID is a non "native" AMD tool it requires a special daemon to access t
 
 <h2 id="libraries">Libraries</h2>
 
-### 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) is available as a module on Snellius
+### 1. PMT ([Power Measurement Toolkit](https://git.astron.nl/RD/pmt/)) 
+
+PMT is a high-level software library capable of collecting power consumption measurements on various hardware. The library provides a standard interface to easily measure the energy use of devices such as CPUs and GPUs in critical application sections.
+
+#### Capabilities:
+
+![PMT](images/PMT.png)
+> Image Source: 
+https://doi.org/10.48550/arXiv.2210.03724
+
+#### C++ example:
+```cpp
+#include <pmt.h> // needed for PMT
+#include<iostream> // needed for CPP IO ... cout, endl etc etc
+
+// Initialize the Sensor
+auto sensor = pmt::rapl::Rapl::create();
+
+// Read from the PMT Sensor
+auto start = sensor->read();
+
+some_function_that_you_want_to_time();
+
+// Read from the PMT Sensor
+auto end = sensor->read();
+
+std::cout<<"RESULTS-------"<<std::endl;
+std::cout<<"Matrix Size: "<<ROWS<<std::endl;
+std::cout <<"PMT Seconds: "<< pmt::PMT::seconds(start, end) << " s"<< std::endl;
+std::cout <<"PMT Joules: " << pmt::PMT::joules(start, end) << " J" << std::endl;
+std::cout <<"PMT Watts: " << pmt::PMT::watts(start, end) << " W" << std::endl;
+```
+
+#### Python example:
+
+```python
+import pypmt
+from pypmt import joules, seconds, watts
+
+# Initialize the Sensor
+pmt = pypmt.Rapl.create()
+
+# Read from the Sensor
+start = pmt.read()
+
+some_function_that_you_want_to_time()
+
+# Read from the Sensor
+end = pmt.read()
+
+print("joules {}".format(pypmt.joules(start, end)))
+print("watts {}".format(pypmt.watts(start, end)))
+print("seconds {}".format(pypmt.seconds(start, end)))
+
+```
+
+
+#### It is available on Snellius
+
 How to compile a c++ source code with PMT library: All you need to do is load the PMT module on Snellius and link to it ( `-lpmt`)  during compilation....
 ```
 module purge
@@ -244,7 +309,7 @@ g++ -fopenmp -lpmt mat_mul_pmt.cpp -o mat_mul_pmt
 ```
 Now run it and see what you observe.....
 ```
-./mat_mul_pmt
+./bin/mat_mul_pmt 200 200
 ```
 
 -------
@@ -257,20 +322,36 @@ Now run it and see what you observe.....
 
 <div class="image-single-row">
           <img style="height:250px;width:30%" src="images/size_v_time.png"></img>
-          <img style="height:250px;width:30%" src="images/size_v_joule.png"></img>
-          <img style="height:250px;width:30%" src="images/size_v_watt.png"></img>
+          <img style="height:250px;width:30%" src="images/Black_question_mark.png"></img>
+          <img style="height:250px;width:30%" src="images/Black_question_mark.png"></img>
 </div>
 
-### Run the "Energy study script"
+
+### Steps to take:
+1. **Orient yourself to the `mat_mul_pmt` executable**:
+2. **Run the "energy study script:** 
+    ```
+    sh energy_monitoring_pmtstudy.sh
+    ```
+    This will output the results to the file `results.txt` 
+3. **Plot the results:**
+
+    You will need python as a plotting tool, which will read in `results.txt` and plot time, energy, and power in one png
+    ```
+    python ../scripts/plot_monitoring_pmtstudy.py results.txt 
+    ```
+    Also works....
+    ```
+    python ../scripts/plot_monitoring_pmtstudy.py results.txt results_two.txt results_three.txt
+    ```
+    The resulting plots will be stored in `time_energy_power.png`
+
+4. Can you Add more runs with varying OpenMP Threads to see how you can improve performance energy? HINT: Edit the `energy_monitoring_pmtstudy.sh` script to vary the output file ...`RESULTS_FILE=results_serial.txt`, and comment out the serial line in favor of the OpenMP line. See lines 30 and 31 of  `energy_monitoring_pmtstudy.sh`.
+        
 
 
-```
-sh energy_monitoring_study.sh
-```
-This will output the results to the file `results.txt` 
 
-
-You will need python as a plotting tool, which will read in `results.txt` and plot three pngs (`size_v_joule.png`,`size_v_time.png`, `size_v_watt.png`)
+HINT: You will need python as a plotting tool, which will read in `results.txt` and plot time, energy, and power in one png
 
 ```
 module load 2022
@@ -279,7 +360,3 @@ module load Python/3.10.4-GCCcore-11.3.0
 pip install matplotlib --user
 pip install numpy --user
 ```
-
-
-### 2. How does the Power scale with Frequency of an AMD EPYC 7H12 64-Core Processor?
--- Can you reproduce Power Frequency Relationship for the AMD ROME nodes of Snellius?

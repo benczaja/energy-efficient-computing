@@ -14,4 +14,4 @@ module load pmt/1.1.0-foss-2022a
 
 g++ -fopenmp -lpmt -fpermissive mat_mul_pmt.cpp -o ../bin/mat_mul_pmt
 
-echo "Executables can be found in src"
+echo "Executables can be found in ./bin"
