@@ -249,7 +249,7 @@ def tune():
         metrics=metrics,
         grid_div_x=grid_div_x,
         grid_div_y=grid_div_y,
-        cache="hotspot_cache.json",
+        cache="hotspot/hotspot_cache.json",
         restrictions=restrictions,
         verbose=True,
         observers=observer,
