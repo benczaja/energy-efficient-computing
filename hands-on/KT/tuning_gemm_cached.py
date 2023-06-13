@@ -93,7 +93,7 @@ def tune():
         strategy_options=dict(max_fevals=fevals),
         metrics=metrics,
         objective=to_optimize,
-        cache="GEMM_A100_cache.json",
+        cache="gemm/gemm_cache.json",
     )
 
     end = time.time()
