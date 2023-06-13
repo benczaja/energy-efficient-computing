@@ -5,6 +5,7 @@ from collections import OrderedDict
 
 import numpy as np
 import kernel_tuner as kt
+from kernel_tuner.observers.nvml import NVMLObserver
 
 from common import *
 
@@ -70,6 +71,13 @@ def tune():
     restrict += ["KWG % ((MDIMC * NDIMC)/NDIMB) == 0"]
     restrict += ["not (MWG == 128 and NWG == 128 and MDIMC == 8 and NDIMC == 8)"]
 
+    # 
+    nvmlobserver = NVMLObserver(
+        ["nvml_energy", "temperature", "core_freq", "mem_freq"],
+        save_all=True,
+        use_locked_clocks=False,
+    )
+
     strategy = "greedy_mls"
     fevals = 100
     # If you select GFLOP/s the optimizer will improve performance
@@ -89,6 +97,7 @@ def tune():
         restrictions=restrict,
         grid_div_x=grid_div_x,
         grid_div_y=grid_div_y,
+        observers=[nvmlobserver],
         strategy=strategy,
         strategy_options=dict(max_fevals=fevals),
         metrics=metrics,
