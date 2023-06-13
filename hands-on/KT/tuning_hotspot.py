@@ -181,7 +181,7 @@ def get_device_info(device):
     return result
 
 
-def tune():
+def tune(device=0):
     problem_size = (4096, 4096)
 
     tune_params, max_tfactor = get_tunable_parameters(problem_size)
@@ -249,6 +249,7 @@ def tune():
         metrics=metrics,
         grid_div_x=grid_div_x,
         grid_div_y=grid_div_y,
+        device=device,
         cache="hotspot/hotspot_cache.json",
         restrictions=restrictions,
         verbose=True,
@@ -261,5 +262,6 @@ def tune():
 
 
 if __name__ == "__main__":
-    tune()
+    device = 0
+    tune(device)
     # test_temporal_tiling()
