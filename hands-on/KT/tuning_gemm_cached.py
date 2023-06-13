@@ -21,13 +21,6 @@ def tune():
     problem_size = (512, 512)
     total_flops = ops(m, n, k)
 
-    # Allocate data
-    A = np.random.randn(*problem_size).astype(np.float32)
-    B = np.random.randn(*problem_size).astype(np.float32)
-    C = np.zeros_like(A)
-
-    args = [C, A, B]
-
     metrics = OrderedDict()
     # Throughput
     metrics["GFLOP/s"] = lambda p: total_flops / (p["time"] / 1000.0)
