@@ -71,13 +71,6 @@ def tune():
     restrict += ["KWG % ((MDIMC * NDIMC)/NDIMB) == 0"]
     restrict += ["not (MWG == 128 and NWG == 128 and MDIMC == 8 and NDIMC == 8)"]
 
-    #
-    nvmlobserver = NVMLObserver(
-        ["nvml_energy", "temperature", "core_freq", "mem_freq"],
-        save_all=True,
-        use_locked_clocks=False,
-    )
-
     strategy = "greedy_mls"
     fevals = 100
     # If you select GFLOP/s the optimizer will improve performance
@@ -86,7 +79,7 @@ def tune():
     # to_optimize = 'GFLOPS/W'
 
     start = time.time()
-    results, env = kt.tune_kernel(
+    kt.tune_kernel(
         "Xgemm",
         "",
         problem_size,
@@ -97,7 +90,6 @@ def tune():
         restrictions=restrict,
         grid_div_x=grid_div_x,
         grid_div_y=grid_div_y,
-        observers=[nvmlobserver],
         strategy=strategy,
         strategy_options=dict(max_fevals=fevals),
         metrics=metrics,
@@ -106,8 +98,10 @@ def tune():
     )
 
     end = time.time()
-    print(f"Tuning time: {end - start}")
+    print()
+    print(f"Tuning time: {end - start:.3} s")
+    print()
 
 
 if __name__ == "__main__":
-    results, env = tune()
+    tune()
