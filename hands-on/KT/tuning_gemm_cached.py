@@ -79,7 +79,7 @@ def tune():
     # to_optimize = 'GFLOPS/W'
 
     start = time.time()
-    results, env = kt.tune_kernel(
+    kt.tune_kernel(
         "Xgemm",
         "",
         problem_size,
