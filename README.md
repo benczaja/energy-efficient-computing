@@ -18,7 +18,7 @@
     - Introduction to tools:
         - AMD-uProf
         - Power Measurement Toolkit (PMT)
-    - Monitoring and DVFS Excersize/s
+    - Monitoring and DVFS Exercise/s
 ---
 ### Day 2  - June 16 (start 10:00 end 17:00)
 
