@@ -5,14 +5,14 @@
 2. [Linux tools](#linux)
 3. [Profilers](#profiler)
 4. [Libraries](#libraries)
-5. [Excersizes](#excersizes)
+5. [Exercises](#exercises)
 
 
 <h2 id="concepts">Basic Concepts</h2>
 
 ### What is Power? What is Energy? And how do I control it?
 
- -  **Power (W or kW)** is the rate of doing work, measured in Watts, and is represented by the letter P. It is an "instintatious" unit. It gives you an idea of how much work can be done in a unit of time. 
+ -  **Power (W or kW)** is the rate of doing work, measured in Watts, and is represented by the letter P. It is an "instantaneous" unit. It gives you an idea of how much work can be done in a unit of time. 
 
     - Lighthouse light bulb ~ 1000 W
     - Reading light  bulb ~ 15 W
@@ -105,12 +105,12 @@ Nominal Perf ------>+-----------------------+                         +---------
 
 <h2 id="linux">Linux tools</h2>
 
-In order to get an overview of the CPU arctecture of the physical (host) system use the linux tool `lscpu`. 
+In order to get an overview of the CPU architecture of the physical (host) system use the linux tool `lscpu`. 
 ```
 lscpu 
 ```
 
-You can look at the files that show you the current and available rfrequencies of your CPU. Lets look at CPU #0 for example....
+You can look at the files that show you the current and available frequencies of your CPU. Lets look at CPU #0 for example....
 
 - List the available Freqs.
     - ``` cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies ```
@@ -139,8 +139,8 @@ watch -n 0.1 cpupower -c 0 frequency-info
 
 > <mark style="background: #FF0800!important">**!!!! **Attention** !!!!**</mark>
 >
-> You need special prvialges in order to access the "all" of the Hardward counters.
-to do this on Snellius submit a job with the contstraint..                         
+> You need special privileges in order to access the "all" of the hardware counters.
+to do this on Snellius submit a job with the constraint..                         
 > `--constraint=hwperf`
 >
 > EXAMPLE USAGE:
@@ -196,7 +196,7 @@ List predefined profiles
 ```
 AMDuProfCLI info --list collect-configs
 ```
-List the available "system events" availble from timechart
+List the available "system events" available from timechart
 ```
 AMDuProfCLI timechart --list
 ```
@@ -226,7 +226,7 @@ This will create a .png `timechart_plot.png` in the directory where the profile 
 ### LIKWID (“Like I Knew What I’m Doing.”)
 > https://github.com/RRZE-HPC/likwid
 
-Analogus to AMDuProf.
+analogous to AMDuProf.
 ```
 module load 2022
 module load likwid/5.2.2-GCC-11.3.0
@@ -316,7 +316,7 @@ Now run it and see what you observe.....
 
 
 
-<h2 id="excersizes">Excersizes</h2>
+<h2 id="exercises">Exercises</h2>
 
 ### 1. How does Performance, Power and Energy Scale?
 
