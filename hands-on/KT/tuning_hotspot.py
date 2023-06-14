@@ -8,88 +8,6 @@ from kernel_tuner.observers import BenchmarkObserver
 from kernel_tuner.observers.nvml import NVMLObserver
 
 
-def test_temporal_tiling():
-    problem_size = (7, 7)
-
-    tune_params, max_tfactor = get_tunable_parameters(problem_size)
-
-    temp_src, power, temp_dst = get_input_data(problem_size, max_tfactor)
-
-    test_input = np.array([i for i in range(np.prod(problem_size))]).reshape(
-        *problem_size
-    )
-    temp_src[max_tfactor:-max_tfactor, max_tfactor:-max_tfactor] = test_input
-
-    # setup arguments
-    step_div_cap, Rx_1, Ry_1, Rz_1 = get_input_arguments(*problem_size)
-    args = [power, temp_src, temp_dst, Rx_1, Ry_1, Rz_1, step_div_cap]
-
-    grid_div_x = ["block_size_x", "tile_size_x"]
-    grid_div_y = ["block_size_y", "tile_size_y"]
-
-    # call the kernel once with temporal tiling factor = 1
-    params = dict(
-        grid_width=problem_size[0],
-        grid_height=problem_size[1],
-        block_size_x=16,
-        block_size_y=16,
-        tile_size_x=1,
-        tile_size_y=1,
-        temporal_tiling_factor=1,
-        max_tfactor=max_tfactor,
-    )
-    reference = kt.run_kernel(
-        "calculate_temp",
-        "hotspot_new.cu",
-        problem_size,
-        args,
-        params,
-        grid_div_x=grid_div_x,
-        grid_div_y=grid_div_y,
-    )
-
-    print(reference[2])
-
-    # replace the input with the output of the first kernel
-    temp2 = np.zeros_like(temp_src)
-    temp2[max_tfactor:-max_tfactor, max_tfactor:-max_tfactor] = reference[2]
-
-    # call the kernel again with temporal tiling factor = 1
-    args2 = [power, temp2, temp_dst, Rx_1, Ry_1, Rz_1, step_div_cap]
-    reference2 = kt.run_kernel(
-        "calculate_temp",
-        "hotspot_new.cu",
-        problem_size,
-        args2,
-        params,
-        grid_div_x=grid_div_x,
-        grid_div_y=grid_div_y,
-    )
-    answer = [None for _ in args]
-    answer[2] = reference2[2]
-
-    print(answer[2])
-
-    # tune the kernel with temporal tiling factor = 2
-    tune_params["block_size_y"] = [16, 32]
-    tune_params["block_size_x"] = [16, 32]
-    tune_params["tile_size_x"] = [1, 2, 4]
-    tune_params["tile_size_y"] = [1, 2, 4]
-    tune_params["temporal_tiling_factor"] = [2]
-
-    results, env = kt.tune_kernel(
-        "calculate_temp",
-        "hotspot_new.cu",
-        problem_size,
-        args,
-        tune_params,
-        grid_div_x=grid_div_x,
-        grid_div_y=grid_div_y,
-        verbose=True,
-        answer=answer,
-    )
-
-
 def get_input_arguments(grid_rows, grid_cols):
     # maximum power density possible (say 300W for a 10mm x 10mm chip)  */
     MAX_PD = 3.0e6
@@ -264,4 +182,3 @@ def tune(device=0):
 if __name__ == "__main__":
     device = 0
     tune(device)
-    # test_temporal_tiling()
