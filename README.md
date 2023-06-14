@@ -22,15 +22,15 @@
 ---
 ### Day 2  - June 16 (start 10:00 end 17:00)
 
-- (10:00-10:15) Introduction to Day 2 (Tools available to do DVFS for you) [Sagar Dolas (SURF)]
+- (10:00-10:15) Introduction to Day 2 [Sagar Dolas (SURF)]
 
 - (10:15-11:15) [Kernel Tuner tutorial](https://github.com/KernelTuner/kernel_tuner) [Alessio Sclocco and Stijn Heldens (Netherlands eScience Center)]
 
-- (11:15-11:30) Lunch
+- (11:15-11:30) Coffee Break
 
 - (11:30-12:30) [Energy Aware Runtime (EAR) tutorial](hands-on/EAR/README.md) [Benjamin Czaja (SURF)]
 
-- (12:30-13:30) Coffee Break
+- (12:30-13:30) Lunch
 
 - (13:30-16:00) Hands-on with KernelTuner and/or EAR [Alessio Sclocco, Benjamin Czaja]
     - Choice given to the participants using a couple of pre-defined applications and/or their own applications
