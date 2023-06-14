@@ -130,6 +130,34 @@ The image below illustrates the usage of EAR to show the characteristics of a va
 
 By understanding an application's characteristics we can try to "guess" at which Policy will be best suited for an application. 
 
+EAR offers three energy policies plugins: min_energy, min_time and monitoring. The last one is not a power policy, is used just for application monitoring where CPU frequency is not modified (neither memory or GPU frequency).  For application analysis monitoringcan be used with specific CPU, memory and/or GPU frequencies.
+
+The 2 optimization policies `min_time` and `min_energy` will tune the frequency for you. The energy policy is selected by setting the `--ear-policy=policy` option when submitting a SLURM job.
+
+#### min_energy 
+
+The goal of this policy is to minimize the energy consumed with a limit to the performance degradation. 
+
+This limit is set in the SLURM `--ear-policy-th` option or the configuration file. The `min_energy` policy will select the optimal frequency that minimizes energy enforcing (performance degradation <= parameter). When executing with this policy, applications starts at default frequency(specified at ear.conf).
+```
+PerfDegr = (CurrTime - PrevTime) / (PrevTime)
+```
+
+#### min_time
+
+
+The goal of this policy is to improve the execution time while guaranteeing a minimum ratio between performance benefit and frequency increment that justifies the increased energy consumption from this frequency increment. The policy uses the SLURM parameter option mentioned above as a minimum efficiency threshold.
+Example: if `--ear-policy-th=0.75`, EAR will prevent scaling to upper frequencies if the ratio between performance gain and frequency gain do not improve at least `75% (PerfGain >= (FreqGain * threshold).`
+
+```
+PerfGain=(PrevTime-CurrTime)/PrevTime
+FreqGain=(CurFreq-PrevFreq)/PrevFreq
+```
+
+When launched with min_time policy, applications start at a default frequency (defined at ear.conf).
+
+
+
 
 ![EAR_freq](images/CPU_FREQ_palabos_weakscaling_4nodes.png)
 
