@@ -246,6 +246,16 @@ PMT is a high-level software library capable of collecting power consumption mea
 > Image Source: 
 https://doi.org/10.48550/arXiv.2210.03724
 
+PMT can be seen as a library which calls "lower level" libraries that allow reporting the energy consumption of various system-on-chip power domains. PMt supports the following Hardware/Libraries:
+
+- RAPL (Running Average Power Limit)
+- likwid
+- NVML
+- ROCM
+- xilinx
+
+For the CPU part of this course we will showcase the Rapl functionality.
+
 #### C++ example:
 ```cpp
 #include <pmt.h> // needed for PMT
