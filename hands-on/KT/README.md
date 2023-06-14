@@ -46,7 +46,20 @@ mv GEMM_A100_cache.json gemm/gemm_cache.json
 
 You can now read the tuning script for the GEMM kernel, it is called `tuning_gemm_cached.py`.
 We suggest you to first check how it works, before executing it.
+
+```bash
+python tuning_gemm_cached.py
+```
+
 After you are done, the variable `to_optimize` contains the metric that should be optimized: throughput in GFLOP/s or energy efficiency in GFLOPS/W.
+If you modify the code you can see if the most performant configuration looks like the most energy efficient one.
+
+```python
+# If you select GFLOP/s the optimizer will improve performance
+to_optimize = "GFLOP/s"
+# If you select GFLOPS/W the optimizer will improve energy efficiency
+# to_optimize = 'GFLOPS/W'
+```
 
 You can also examine the search space visually using the Dashboard.
 
@@ -58,7 +71,17 @@ ktdashboard gemm/gemm_cache.json
 
 No need to download data for the hotspot kernel, you can inspect the `tuning_hotspot.py` tuning script and try to execute it, but exploring such a large tuning space takes time.
 
+```bash
+python tuning_hotspot.py
+```
+
 You could use a different strategy than the current one (i.e. `random_sample`), lower the number of function evaluations (currently set at `1000`), or change the objective from GFLOP/s to GFLOPS/W.
+
+```python
+strategy="random_sample",
+strategy_options=dict(max_fevals=1000),
+objective="GFLOP/s",
+```
 
 You can also examine the search space visually using the Dashboard.
 

@@ -172,9 +172,9 @@ def tune(device=0):
         restrictions=restrictions,
         verbose=True,
         observers=observer,
+        lang="cupy",
         strategy="random_sample",
         strategy_options=dict(max_fevals=1000),
-        lang="cupy",
         objective="GFLOP/s",
     )
 
