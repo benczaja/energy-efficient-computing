@@ -36,6 +36,7 @@ We only need to install the necessary software once.
 
 ## GEMM (cached version)
 
+During this event we are not allowed to change the frequencies on the Snellius nodes we use, therefore we are simulating the process using the result of a previous tuning run.
 To use the cached version of the GEMM kernel we need to download the compressed Kernel Tuner cache file, and move it to the proper directory.
 
 ```bash
