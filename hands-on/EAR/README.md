@@ -164,7 +164,7 @@ When launched with min_time policy, applications start at a default frequency (d
 
 
 In this image we see a 2D contour map of the Energy saving vs Time savings, which shows the Energy benefit and its associated performance loss for a 4 node run of the Lattice Boltzmann Method (LBM) CFD code Palabos (https://palabos.unige.ch).
-Since LBM is a memory intensive algorithm, we see that the `min_time` policy of EAR be most effective.
+Since LBM is a memory intensive algorithm, we see that the `min_energy` policy of EAR be most effective.
 
 ![EAR_policies](images/Palabos_4node_128ppn_foss_per_policy_V2.png)
 
